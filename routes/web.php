@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::post('/contas', [HomeController::class, 'criarOrEditarConta'])->name('contas.criarEditar');
+Route::post('/contas/quitar', [HomeController::class, 'quitarConta'])->name('contas.quitar');
+Route::post('/contas/deletar', [HomeController::class, 'deletarConta'])->name('contas.deletar');
+Route::post('/contas/editar', [HomeController::class, 'editarConta'])->name('contas.editar');
