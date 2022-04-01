@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +15,22 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::post('/contas', [HomeController::class, 'criarOrEditarConta'])->name('contas.criarEditar');
+    Route::post('/contas/quitar', [HomeController::class, 'quitarConta'])->name('contas.quitar');
+    Route::post('/contas/deletar', [HomeController::class, 'deletarConta'])->name('contas.deletar');
+    Route::post('/contas/editar', [HomeController::class, 'editarConta'])->name('contas.editar');
+});
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::post('/contas', [HomeController::class, 'criarOrEditarConta'])->name('contas.criarEditar');
-Route::post('/contas/quitar', [HomeController::class, 'quitarConta'])->name('contas.quitar');
-Route::post('/contas/deletar', [HomeController::class, 'deletarConta'])->name('contas.deletar');
-Route::post('/contas/editar', [HomeController::class, 'editarConta'])->name('contas.editar');
+
+Route::get('/clientes/{id}', [ClientesController::class, 'contas'])->name('cliente');
+Route::get('/login', function () {
+    return "<h1>Vai trabalhar rapá</h1>";
+})->name('login');
+
+
+Route::get('/ocara', function () {
+    Auth::loginUsingId(1);
+    return redirect()->route('home');
+});

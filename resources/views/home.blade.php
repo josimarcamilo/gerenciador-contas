@@ -33,12 +33,24 @@
                             </select>
                         </div>
                         <div class="mb-3">
+                            <label class="form-label">Cliente</label>
+                            <select name="cliente" class="form-select" aria-label="Default select example">
+                                <option value="">Cliente</option>
+                                @foreach ($clientes as $cliente)
+                                    <option value="{{$cliente->id}}">{{$cliente->nome}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-3">
                             <label class="form-label">Valor</label>
-                            <input name="valor" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input name="valor" value="100" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Vencimento</label>
                             <input name="vencimento" type="date" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input name="tags" type="text" class="form-control" placeholder="tags">
                         </div>
                         <input name="acao" value="criar" class="form-control" type="hidden">
                         <input name="codigo" value="" class="form-control" type="hidden">
@@ -81,6 +93,7 @@
                     <th scope="col">Status</th>
                     <th scope="col">Valor</th>
                     <th scope="col">Vencimento</th>
+                    <th scope="col">Tags</th>
                     <th scope="col">Ação</th>
                 </tr>
             </thead>
@@ -96,6 +109,7 @@
                         <td>{{ \App\Models\Conta::STATUS_DESCRIPTION[$conta->status] }}</td>
                         <td>{{ $conta->valor /100 }}</td>
                         <td>{{ $conta->vencimento }}</td>
+                        <td>{{ $conta->getTags() }}</td>
                         <td>
                             <div style="display:flex;">
                                 @if($conta->status == 1)

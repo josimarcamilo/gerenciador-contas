@@ -38,4 +38,20 @@ class Conta extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function getTags()
+    {
+        $string = [];
+
+        foreach($this->tags as $tag) {
+            $string[] = $tag->nome;
+        }
+
+        return implode(' ', $string);
+    }
 }

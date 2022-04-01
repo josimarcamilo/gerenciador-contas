@@ -16,6 +16,7 @@ mix
     .sass('resources/sass/bootstrap.scss', 'public/css/bootstrap.css')
 
     .js('resources/js/app.js', 'public/js')
+    .js('resources/js/home.js', 'public/js')
     .postCss('resources/css/app.css', 'public/css')
     .scripts('node_modules/jquery/dist/jquery.js', 'public/js/jquery.js')
     .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'public/js/bootstrap.js');

@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Arquivo;
+use App\Models\Cliente;
 use App\Models\Conta;
+use App\Models\Tag;
+use Illuminate\Foundation\Console\ClearCompiledCommand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use stdClass;
 
 class HomeController extends Controller
 {
@@ -22,35 +26,66 @@ class HomeController extends Controller
         
         $totais = [];
 
+
         if(count($totalProjetado->all())) {
             foreach($totalProjetado as $total){
                 $totais[Conta::TYPE_DESCRIPTION[$total->tipo]] = $total->total / 100;
             }
-        }        
+        }       
+        
+        $clientes = Cliente::all();
 
-        return view('home', compact('contas', 'totais'));
+        return view('home', compact('contas', 'totais', 'clientes'));
     }
 
     public function criarOrEditarConta(Request $req)
     {
         $campos = $req->only(['codigo', 'descricao', 'tipo', 'valor', 'vencimento']);
+        $cliente = $req->only(['cliente']);
+        $reqTags = $req->tags;
+
+        $reqTags = explode(',', $reqTags);
+
+        $tags = [];
+        foreach ($reqTags as $tag) {
+            $tags[] = Tag::firstOrCreate(['nome' => $tag]);
+        }
+
+        $dados = new stdClass();
+        $dados->campos = $campos;
+        $dados->tags = $tags;
+        $dados->cliente = $cliente['cliente'];
+
         if($campos['codigo']) {
             $this->editarConta($campos);
         } else {
-            $this->criarConta($campos);
+            $this->criarConta($dados);
         }
 
         return redirect()->route('home');
     }
 
-    private function criarConta($campos)
+    private function criarConta($dados)
     {
+        $campos = $dados->campos;
+        $tags = $dados->tags;
+
         $conta = new Conta($campos);
         $conta->user_id = 1;
         $conta->status = Conta::PENDENTE;
         $conta->valor  = str_replace(',', '.', $campos['valor']) * 100;
 
+        if($dados->cliente) {
+            $conta->cliente_id = $dados->cliente;
+        }
+
         $conta->save();
+
+        foreach($tags as $tag) {
+            $result = DB::table('conta_tag')->updateOrInsert(
+                ['conta_id' => $conta->id, 'tag_id' => $tag->id]
+            );
+        }        
     }
 
     private function editarConta($campos)
