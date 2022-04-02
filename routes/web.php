@@ -32,5 +32,6 @@ Route::get('/login', function () {
 
 Route::get('/ocara', function () {
     Auth::loginUsingId(1);
-    return redirect()->route('home');
+    return response()->json(Auth::user());
+    // return redirect()->route('home');
 });
