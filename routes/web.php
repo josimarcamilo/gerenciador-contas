@@ -33,13 +33,13 @@ Route::get('/login', function () {
 
 
 Route::get('/ocara', function () {
-    $id = DB::table('users')->insertGetId([
-        'name' => 'Josimar Camilo',
-        'email' => 'josimarcamilo2100@gmail.com',
-        'password' => Hash::make('123456'),
-    ]);
+    // $id = DB::table('users')->insertGetId([
+    //     'name' => 'Josimar Camilo',
+    //     'email' => 'josimarcamilo2100@gmail.com',
+    //     'password' => Hash::make('123456'),
+    // ]);
     
-    Auth::loginUsingId($id);
+    Auth::loginUsingId(1, true);
     return response()->json(Auth::user());
     // return redirect()->route('home');
 });
