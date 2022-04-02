@@ -3,6 +3,8 @@
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,7 +33,13 @@ Route::get('/login', function () {
 
 
 Route::get('/ocara', function () {
-    Auth::loginUsingId(1);
+    $id = DB::table('users')->insertGetId([
+        'name' => 'Josimar Camilo',
+        'email' => 'josimarcamilo2100@gmail.com',
+        'password' => Hash::make('123456'),
+    ]);
+    
+    Auth::loginUsingId($id);
     return response()->json(Auth::user());
     // return redirect()->route('home');
 });
