@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('arquivos', function (Blueprint $table) {
-            $table->id();
-            $table->string('nome')->nullable();
-            $table->string('path');
+        Schema::create('orcamentos', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('descricao');
+            $table->smallInteger('padrao');
+            $table->smallInteger('visibilidade');
 
-            $table->unsignedBigInteger('conta_id');
-            $table->foreign('conta_id')->references('id')->on('contas');
+            $table->unsignedInteger('user_id')->nullable();
 
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('arquivos');
+        Schema::dropIfExists('orcamentos');
     }
 };

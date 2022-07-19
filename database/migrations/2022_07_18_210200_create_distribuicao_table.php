@@ -13,9 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('distribuicao', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
+            $table->unsignedInteger('orcamento_id')->nullable();
+            $table->string('descricao');
+            $table->integer('porcentagem');
+
+            $table->foreign('orcamento_id')->references('id')->on('orcamentos');
+            $table->timestamps();
         });
     }
 
@@ -26,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('distribuicao');
     }
 };

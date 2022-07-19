@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "55abd1f6f691fd6b36aa06f19ead088c",
+    "content-hash": "547d02db0975343deb90894cb3dba515",
     "packages": [
         {
             "name": "brick/math",
@@ -892,6 +892,47 @@
                 }
             ],
             "time": "2022-03-20T21:55:58+00:00"
+        },
+        {
+            "name": "josimarcamilo/laravel-core",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/josimarcamilo/laravel-core.git",
+                "reference": "3d23245bc6e57b322ccfcaea3cf554e09961bcc7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/josimarcamilo/laravel-core/zipball/3d23245bc6e57b322ccfcaea3cf554e09961bcc7",
+                "reference": "3d23245bc6e57b322ccfcaea3cf554e09961bcc7",
+                "shasum": ""
+            },
+            "require-dev": {
+                "orchestra/testbench": "^7.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JosimarCamilo\\LaravelCore\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Josimar Camilo",
+                    "email": "josimarifmg@gmail.com"
+                }
+            ],
+            "description": "Utilidades para laravel",
+            "support": {
+                "issues": "https://github.com/josimarcamilo/laravel-core/issues",
+                "source": "https://github.com/josimarcamilo/laravel-core/tree/master"
+            },
+            "time": "2022-07-04T20:08:23+00:00"
         },
         {
             "name": "laravel/framework",
@@ -7732,7 +7773,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "josimarcamilo/laravel-core": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
