@@ -25,4 +25,5 @@ Route::post('/users/token', [UserController::class, 'generateToken']);
 
 Route::middleware('auth:sanctum')->group(function (){
     Route::post('/orcamentos', [OrcamentoController::class, 'create']);
+    Route::get('/orcamentos', [OrcamentoController::class, 'list']);
 });
