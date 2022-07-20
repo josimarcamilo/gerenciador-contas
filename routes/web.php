@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    // Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::post('/contas', [HomeController::class, 'criarOrEditarConta'])->name('contas.criarEditar');
     Route::post('/contas/quitar', [HomeController::class, 'quitarConta'])->name('contas.quitar');
     Route::post('/contas/deletar', [HomeController::class, 'deletarConta'])->name('contas.deletar');
@@ -27,19 +27,5 @@ Route::middleware(['auth'])->group(function () {
 
 
 Route::get('/clientes/{id}', [ClientesController::class, 'contas'])->name('cliente');
-Route::get('/login', function () {
-    return "<h1>Vai trabalhar rapá</h1>";
-})->name('login');
 
-
-Route::get('/ocara', function () {
-    // $id = DB::table('users')->insertGetId([
-    //     'name' => 'Josimar Camilo',
-    //     'email' => 'josimarcamilo2100@gmail.com',
-    //     'password' => Hash::make('123456'),
-    // ]);
-    
-    Auth::loginUsingId(1, true);
-    return response()->json(Auth::user());
-    // return redirect()->route('home');
-});
+Route::view('/', 'welcome');
