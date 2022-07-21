@@ -31,5 +31,5 @@ Route::get('/clientes/{id}', [ClientesController::class, 'contas'])->name('clien
 // Route::view('/', 'welcome');
 
 Route::get('/', function(){
-    return "<h1>v1</h1><h1>". gethostname() ."</h1>";
+    return  gethostname();
 });

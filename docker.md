@@ -7,6 +7,7 @@ https://www.digitalocean.com/community/tutorials/how-to-set-up-laravel-nginx-and
 
 sudo ln -s /etc/nginx/sites-available/sitecontas /etc/nginx/sites-enabled/
 
+docker compose up --scale app=3
 
 nginx:
     image: nginx

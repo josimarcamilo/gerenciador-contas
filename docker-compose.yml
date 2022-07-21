@@ -5,7 +5,7 @@ services:
   app:
     build: .
     image: contas:1.0
-    container_name: contas-app
+    # container_name: contas-app
     restart: unless-stopped
     tty: true
     environment:
@@ -32,6 +32,8 @@ services:
       - ./nginx/conf.d/:/etc/nginx/conf.d/
     networks:
       - contas-network
+    depends_on:
+      - app
 
   # mysql:
   #   image: mysql:8.0.29
