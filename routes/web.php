@@ -28,4 +28,8 @@ Route::middleware(['auth'])->group(function () {
 
 Route::get('/clientes/{id}', [ClientesController::class, 'contas'])->name('cliente');
 
-Route::view('/', 'welcome');
+// Route::view('/', 'welcome');
+
+Route::get('/', function(){
+    return "<h1>v1</h1><h1>". gethostname() ."</h1>";
+});
