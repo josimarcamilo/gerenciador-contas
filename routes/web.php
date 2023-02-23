@@ -2,9 +2,6 @@
 
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +27,6 @@ Route::get('/clientes/{id}', [ClientesController::class, 'contas'])->name('clien
 
 // Route::view('/', 'welcome');
 
-Route::get('/', function(){
-    return  gethostname();
+Route::get('/', function () {
+    return view('welcome');
 });
