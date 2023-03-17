@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FinancialPlanningController;
 use App\Http\Controllers\OrcamentoController;
 use Illuminate\Support\Facades\Route;
 use JosimarCamilo\LaravelCore\Controllers\UserController;
@@ -26,4 +27,6 @@ Route::post('/users/token', [UserController::class, 'generateToken']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/orcamentos', [OrcamentoController::class, 'create']);
     Route::get('/orcamentos', [OrcamentoController::class, 'list']);
+
+    Route::post('/plannings', [FinancialPlanningController::class, 'store']);
 });

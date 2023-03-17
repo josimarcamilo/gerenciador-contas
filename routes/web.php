@@ -29,4 +29,4 @@ Route::get('/clientes/{id}', [ClientesController::class, 'contas'])->name('clien
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
