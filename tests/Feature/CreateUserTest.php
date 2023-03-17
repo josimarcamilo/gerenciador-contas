@@ -35,5 +35,9 @@ class CreateUserTest extends TestCase
             'name' => $json['name'],
             'email' => $json['email']
         ]);
+
+        $this->assertDatabaseHas('financial_areas', [
+            'description' => $json['name']
+        ]);
     }
 }
