@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\FinancialPlanningController;
 use App\Http\Controllers\OrcamentoController;
 use Illuminate\Support\Facades\Route;
@@ -29,4 +30,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/orcamentos', [OrcamentoController::class, 'list']);
 
     Route::post('/plannings', [FinancialPlanningController::class, 'store']);
+    Route::post('/budgets', [BudgetController::class, 'store']);
 });

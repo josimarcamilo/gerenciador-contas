@@ -12,8 +12,8 @@ class FinancialPlanning extends Model
     public const OPEN = 1;
     public const CLOSED = 2;
 
-    public function admin()
+    public function financialArea()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(FinancialArea::class, 'financial_area_id');
     }
 }
