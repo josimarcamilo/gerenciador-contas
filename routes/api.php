@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\OrcamentoController;
 use Illuminate\Support\Facades\Route;
-use JosimarCamilo\LaravelCore\Controllers\User as UserController;
+use JosimarCamilo\LaravelCore\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +17,13 @@ use JosimarCamilo\LaravelCore\Controllers\User as UserController;
 
 /* USUARIOS */
 
-Route::post('/users', [UserController::class, 'create']);
+Route::post('/users', [UserController::class, 'store']);
 Route::post('/users/token', [UserController::class, 'generateToken']);
 
 
 /* ORCAMENTOS */
 
-Route::middleware('auth:sanctum')->group(function (){
+Route::middleware('auth:sanctum')->group(function () {
     Route::post('/orcamentos', [OrcamentoController::class, 'create']);
     Route::get('/orcamentos', [OrcamentoController::class, 'list']);
 });

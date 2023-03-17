@@ -10,7 +10,6 @@
         "guzzlehttp/guzzle": "^7.2",
         "josimarcamilo/laravel-core": "dev-master",
         "laravel/framework": "^9.2",
-        "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "predis/predis": "^2.0",
         "vinkla/hashids": "^10.0"
