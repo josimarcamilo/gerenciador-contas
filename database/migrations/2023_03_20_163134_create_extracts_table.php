@@ -12,11 +12,15 @@ return new class () extends Migration {
      */
     public function up()
     {
-        Schema::create('budgets', function (Blueprint $table) {
+        Schema::create('extracts', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('financial_planning_id');
+            $table->smallInteger('type');
             $table->string('description');
-            $table->integer('percentage');
+            $table->integer('amount');
+            $table->integer('category')->nullable();
+            $table->smallInteger('status')->nullable();
+            $table->timestamp('due_date')->nullable();
 
             $table->foreign('financial_planning_id')->references('id')->on('financial_plannings');
             $table->timestamps();
@@ -30,6 +34,6 @@ return new class () extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('budgets');
+        Schema::dropIfExists('extracts');
     }
 };
