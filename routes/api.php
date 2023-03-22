@@ -4,8 +4,8 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\ExtractController;
 use App\Http\Controllers\FinancialPlanningController;
 use App\Http\Controllers\OrcamentoController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use JosimarCamilo\LaravelCore\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +21,7 @@ use JosimarCamilo\LaravelCore\Controllers\UserController;
 /* USUARIOS */
 
 Route::post('/users', [UserController::class, 'store']);
-Route::post('/users/token', [UserController::class, 'generateToken']);
+Route::post('/users/tokens', [UserController::class, 'storeToken']);
 
 
 /* ORCAMENTOS */
