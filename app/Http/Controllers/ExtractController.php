@@ -39,4 +39,21 @@ class ExtractController extends Controller
 
         return response()->json($model, 201);
     }
+
+    public function all(Request $req, $planning)
+    {
+        $financialPlanning = FinancialPlanning::where('uuid', $planning)->first();
+
+        if (! $financialPlanning) {
+            throw new Exception('Financial Planning not found');
+        }
+
+        $result = Extract::where('financial_planning_id', $financialPlanning->id);
+
+        if($req->type){
+            $result->where('type', $req->type);
+        }
+
+        return response()->json($result->get());
+    }
 }

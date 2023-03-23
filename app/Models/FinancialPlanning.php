@@ -12,6 +12,11 @@ class FinancialPlanning extends Model
     public const OPEN = 1;
     public const CLOSED = 2;
 
+    protected $hidden = [
+        'id',
+        'financial_area_id'
+    ];
+
     public function financialArea()
     {
         return $this->belongsTo(FinancialArea::class, 'financial_area_id');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\FinancialPlanningResource;
 use App\Models\FinancialArea;
 use App\Models\FinancialPlanning;
 use Exception;
@@ -43,5 +44,18 @@ class FinancialPlanningController extends Controller
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at,
         ], 201);
+    }
+
+    public function all(Request $req, $area)
+    {
+        $financialArea = FinancialArea::where('uuid', $area)->first();
+
+        if (! $financialArea) {
+            throw new Exception('error');
+        }
+
+        $finacialPlannins = FinancialPlanning::where('financial_area_id', $financialArea->id)->get();
+
+        return FinancialPlanningResource::collection($finacialPlannins);
     }
 }

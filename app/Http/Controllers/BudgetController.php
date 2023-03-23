@@ -45,4 +45,15 @@ class BudgetController extends Controller
             throw $th;
         }
     }
+
+    public function all(Request $req, $planning)
+    {
+        $financialPlanning = FinancialPlanning::where('uuid', $planning)->first();
+
+        if (! $financialPlanning) {
+            throw new Exception('error');
+        }
+
+        return Budget::where('financial_planning_id', $financialPlanning->id)->get();
+    }
 }
