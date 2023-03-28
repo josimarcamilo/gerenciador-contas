@@ -9,10 +9,11 @@
  *
  * criar o link simbolico para public_html
  * ln -s ~/releases/current ~/public_html
+ * ln -s ~/releases/current/public ~/public_html
  */
 
 $directory_versions = "versions";
-$file_currete_version = "public_html/version.txt";
+$file_currete_version = "releases/current/version.txt";
 
 $content = scandir($directory_versions);
 
@@ -37,6 +38,10 @@ $last_version = str_replace('.zip', "", end($versions));
 $current_version = file_get_contents($file_currete_version);
 
 if ($current_version >= $last_version) {
+    echo("nao fazer deploy ". PHP_EOL);
+    echo("versao atual $current_version". PHP_EOL);
+    echo("ultima $last_version". PHP_EOL);
+
     return;
 }
 
