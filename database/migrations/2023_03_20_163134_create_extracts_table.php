@@ -23,6 +23,7 @@ return new class () extends Migration {
             $table->timestamp('due_date')->nullable();
 
             $table->foreign('financial_planning_id')->references('id')->on('financial_plannings');
+            $table->foreign('category')->references('id')->on('budgets');
             $table->timestamps();
         });
     }

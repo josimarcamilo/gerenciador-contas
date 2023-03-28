@@ -34,11 +34,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/areas', [FinancialAreaController::class, 'all']);
 
     Route::post('/plannings', [FinancialPlanningController::class, 'store']);
-    Route::get('/plannings/{area}', [FinancialPlanningController::class, 'all']);
+    Route::get('/plannings/{area}', [FinancialPlanningController::class, 'index']);
+    Route::put('/plannings/{id}', [FinancialPlanningController::class, 'update']);
 
     Route::post('/budgets', [BudgetController::class, 'store']);
     Route::get('/budgets/{planning}', [BudgetController::class, 'all']);
+    Route::put('/budgets/{id}', [BudgetController::class, 'update']);
 
     Route::post('/extracts', [ExtractController::class, 'store']);
     Route::get('/extracts/{planning}', [ExtractController::class, 'all']);
+    Route::put('/extracts/{id}', [ExtractController::class, 'update']);
 });

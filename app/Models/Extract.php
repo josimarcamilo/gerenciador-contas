@@ -17,7 +17,6 @@ class Extract extends Model
     public const PAID = 2;
 
     protected $hidden = [
-        'id',
         'financial_planning_id'
     ];
 
