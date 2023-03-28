@@ -56,4 +56,26 @@ class BudgetController extends Controller
 
         return Budget::where('financial_planning_id', $financialPlanning->id)->get();
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $model = Budget::find($id);
+
+        if (! $model) {
+            throw new Exception('Entity not found');
+        }
+
+        foreach ($request->all() as $key => $value) {
+            $model->$key = $value;
+        }
+
+        $model->save();
+    }
 }

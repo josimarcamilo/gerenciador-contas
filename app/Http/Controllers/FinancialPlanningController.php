@@ -11,6 +11,10 @@ use Ramsey\Uuid\Uuid;
 
 class FinancialPlanningController extends Controller
 {
+    /**
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $req)
     {
         $fields = $req->validate([
@@ -46,7 +50,12 @@ class FinancialPlanningController extends Controller
         ], 201);
     }
 
-    public function all(Request $req, $area)
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Request $req, $area)
     {
         $financialArea = FinancialArea::where('uuid', $area)->first();
 
@@ -57,5 +66,49 @@ class FinancialPlanningController extends Controller
         $finacialPlannins = FinancialPlanning::where('financial_area_id', $financialArea->id)->get();
 
         return FinancialPlanningResource::collection($finacialPlannins);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $model = FinancialPlanning::where('uuid', $id)->first();
+
+        if (! $model) {
+            throw new Exception('Entity not found');
+        }
+
+        foreach ($request->all() as $key => $value) {
+            $model->$key = $value;
+        }
+
+        $model->save();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }
