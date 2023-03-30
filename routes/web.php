@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\ClientesController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,19 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::middleware(['auth'])->group(function () {
-    // Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::post('/contas', [HomeController::class, 'criarOrEditarConta'])->name('contas.criarEditar');
-    Route::post('/contas/quitar', [HomeController::class, 'quitarConta'])->name('contas.quitar');
-    Route::post('/contas/deletar', [HomeController::class, 'deletarConta'])->name('contas.deletar');
-    Route::post('/contas/editar', [HomeController::class, 'editarConta'])->name('contas.editar');
-});
-
-
-Route::get('/clientes/{id}', [ClientesController::class, 'contas'])->name('cliente');
-
-// Route::view('/', 'welcome');
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+});
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

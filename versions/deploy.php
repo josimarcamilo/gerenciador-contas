@@ -23,7 +23,7 @@ if (! $content) {
 }
 
 $versions = array_filter($content, function ($value) {
-    return str_contains($value, '.zip');
+    return str_contains($value, '.zip') && str_starts_with($value, '202');
 });
 
 if (count($versions) == 0) {
@@ -38,10 +38,25 @@ $last_version = str_replace('.zip', "", end($versions));
 $current_version = file_get_contents($file_currete_version);
 
 if ($current_version >= $last_version) {
-    echo("nao fazer deploy ". PHP_EOL);
-    echo("versao atual $current_version". PHP_EOL);
-    echo("ultima $last_version". PHP_EOL);
+    // echo("nao fazer deploy ". PHP_EOL);
+    // echo("versao atual $current_version". PHP_EOL);
+    // echo("ultima $last_version". PHP_EOL);
 
+    return;
+}
+
+$result = false;
+
+try {
+    exec('cd releases/current && php artisan migrate', null, $result);
+} catch(Throwable $tr) {
+    echo "erro ao executar as migrates". PHP_EOL;
+    echo $tr->getMessage(). PHP_EOL;
+    return;
+}
+
+if ($result === false) {
+    echo "erro ao executar as migrates". PHP_EOL;
     return;
 }
 
