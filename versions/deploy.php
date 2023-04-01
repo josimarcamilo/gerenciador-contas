@@ -45,10 +45,11 @@ if ($current_version >= $last_version) {
     return;
 }
 
-$result = false;
+$result = '';
+$resultCode = false;
 
 try {
-    exec('cd releases/current && php artisan migrate', null, $result);
+    exec('cd releases/current && php artisan migrate', $result, $resultCode);
 } catch(Throwable $tr) {
     echo "erro ao executar as migrates". PHP_EOL;
     echo $tr->getMessage(). PHP_EOL;
@@ -82,6 +83,11 @@ if (is_link('releases/current')) {
 
 chdir('releases');
 
-exec("ln -s $last_version current", $result);
+exec("ln -s $last_version current", $result, $resultCode);
+
+if ($result === false) {
+    echo "erro ao criar o link limbolico.". PHP_EOL;
+    return;
+}
 
 echo(PHP_EOL. "version $last_version in production". PHP_EOL);
