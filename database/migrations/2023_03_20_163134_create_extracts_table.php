@@ -18,7 +18,7 @@ return new class () extends Migration {
             $table->smallInteger('type');
             $table->string('description');
             $table->integer('amount');
-            $table->integer('category')->nullable();
+            $table->unsignedInteger('category')->nullable();
             $table->smallInteger('status')->nullable();
             $table->timestamp('due_date')->nullable();
 
