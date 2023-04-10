@@ -23,7 +23,7 @@ if (! $content) {
 }
 
 $versions = array_filter($content, function ($value) {
-    return str_contains($value, '.zip') && str_starts_with($value, '202');
+    return str_contains($value, '.zip') && str_starts_with($value, '20');
 });
 
 if (count($versions) == 0) {
@@ -31,9 +31,13 @@ if (count($versions) == 0) {
     return;
 }
 
+foreach($versions as $key => $version) {
+    $versions[$key] = str_replace('.zip', "", $version);
+}
+
 sort($versions);
 
-$last_version = str_replace('.zip', "", end($versions));
+$last_version = end($versions);
 
 $current_version = file_get_contents($file_currete_version);
 
