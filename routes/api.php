@@ -4,7 +4,6 @@ use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\ExtractController;
 use App\Http\Controllers\FinancialAreaController;
 use App\Http\Controllers\FinancialPlanningController;
-use App\Http\Controllers\OrcamentoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,9 +27,6 @@ Route::post('/users/tokens', [UserController::class, 'storeToken']);
 /* ORCAMENTOS */
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/orcamentos', [OrcamentoController::class, 'create']);
-    Route::get('/orcamentos', [OrcamentoController::class, 'list']);
-
     Route::get('/areas', [FinancialAreaController::class, 'all']);
 
     Route::post('/plannings', [FinancialPlanningController::class, 'store']);

@@ -18,7 +18,7 @@ class CreateFinancialArea
     {
         $user = $event->user;
         $model = new FinancialArea();
-        $model->description = $user->name;
+        $model->description = $user->email;
         $model->user_id = $user->id;
         $model->uuid = Uuid::uuid4();
         $model->save();
