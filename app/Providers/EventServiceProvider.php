@@ -19,6 +19,7 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
             CreateFinancialArea::class,
+            //criar orcamento padrao paulo vieira
         ],
     ];
 

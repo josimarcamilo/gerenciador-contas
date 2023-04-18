@@ -24,4 +24,9 @@ class Extract extends Model
     {
         return $this->belongsTo(FinancialPlanning::class, 'financial_planning_id');
     }
+
+    public function budge()
+    {
+        return $this->belongsTo(Budget::class, 'category');
+    }
 }

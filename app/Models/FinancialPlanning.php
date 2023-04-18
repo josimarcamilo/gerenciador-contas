@@ -21,4 +21,9 @@ class FinancialPlanning extends Model
     {
         return $this->belongsTo(FinancialArea::class, 'financial_area_id');
     }
+
+    public function budget()
+    {
+        return $this->hasMany(Budget::class);
+    }
 }
