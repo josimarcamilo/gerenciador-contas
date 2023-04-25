@@ -60,4 +60,5 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/entrys', [ExtractWebController::class, 'entry'])->name('entry');
     Route::get('/exits', [ExtractWebController::class, 'exit'])->name('exit');
+    Route::get('/credit-card', [ExtractWebController::class, 'creditCard'])->name('credit_card');
 });

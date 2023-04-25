@@ -31,6 +31,16 @@ class ExtractWebController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function creditCard()
+    {
+        return view('pages.credit-card');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         //
