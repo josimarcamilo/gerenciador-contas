@@ -32,7 +32,7 @@ jobs:
         username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASS }}
         server-dir: versions/
-        local-dir: ${{ github.workspace }}/josimar.zip
+        local-dir: ${{ github.workspace }}/build/
 #     - name: Setup PHP without composer
 #       uses: shivammathur/setup-php@v2
 #       with:
