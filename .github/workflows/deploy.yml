@@ -29,13 +29,13 @@ jobs:
       run: |
         ls build
         
-    - name: Upload code to Hotgator
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_PASS }}
-        local-dir: ./build
+#     - name: Upload code to Hotgator
+#       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+#       with:
+#         server: ${{ secrets.FTP_SERVER }}
+#         username: ${{ secrets.FTP_USER }}
+#         password: ${{ secrets.FTP_PASS }}
+#         local-dir: ./build
         
 #     - name: Copy script
 #       run: cp ./scripts/zip-code.php ../
