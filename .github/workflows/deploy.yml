@@ -1,0 +1,20 @@
+name: Deploy Hostgator
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: update packages
+      run: sudo apt-get update
+      
+    - name: Check out repository code
+      uses: actions/checkout@v3
+
+    - name: List files in the repository
+      run: |
+        ls ${{ github.workspace }}
