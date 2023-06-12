@@ -29,6 +29,9 @@ jobs:
       run: |
         php -v &&
         composer install
+    
+    - name: Php extenciosn
+      run: php -m
   
 #   deploy:
 #     runs-on: ubuntu-latest
