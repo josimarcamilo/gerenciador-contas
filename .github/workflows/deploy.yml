@@ -22,6 +22,14 @@ jobs:
       run: |
         ls ${{ github.workspace }}
         
+    - name: FTP upload
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        ftp-server: ${{ secrets.FTP_SERVER }}
+        ftp-username: ${{ secrets.FTP_USER }}
+        ftp-password: ${{ secrets.FTP_PASS }}
+        remote-dir: /versions
+        local-dir: ${{ github.workspace }}/josimar.zip
 #     - name: Setup PHP without composer
 #       uses: shivammathur/setup-php@v2
 #       with:
