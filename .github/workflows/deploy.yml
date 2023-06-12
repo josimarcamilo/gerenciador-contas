@@ -19,6 +19,12 @@ jobs:
       run: |
         ls ${{ github.workspace }}
         
+    - name: pasta anterior
+      run: |
+        cd .. |
+        pwd |
+        ls
+        
     - name: Setup PHP without composer
       uses: shivammathur/setup-php@v2
       with:
