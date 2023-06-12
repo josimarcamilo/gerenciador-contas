@@ -16,7 +16,7 @@ jobs:
       uses: actions/checkout@v3
         
     - name: copy project to folder
-      run: zip -vr josimar.zip ${{ github.workspace }}/ -x '*.DS_Store'
+      run: zip -vr josimar.zip ${{ github.workspace }}/ -x '*.DS_Store' '*.git*' '*.github*'
       
     - name: List files in the repository
       run: |
