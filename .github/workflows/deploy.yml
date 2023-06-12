@@ -29,8 +29,11 @@ jobs:
       run: cp ./scripts/zip-code.php ../
     
     - name: Execute script
-      run: \
-        cd ../ ls && php zip-code.php ${{ secrets.FTP_SERVER }} ${{ secrets.FTP_USER }} ${{ secrets.FTP_PASS }}
+      run: |
+        cd ../
+        pwd
+        ls
+        php zip-code.php ${{ secrets.FTP_SERVER }} ${{ secrets.FTP_USER }} ${{ secrets.FTP_PASS }}
 
 #     - name: Setup PHP without composer
 #       uses: shivammathur/setup-php@v2
