@@ -31,7 +31,7 @@ jobs:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASS }}
-        server-dir: versions/
+        server-dir: ./versions/
         local-dir: ${{ github.workspace }}/build/
 #     - name: Setup PHP without composer
 #       uses: shivammathur/setup-php@v2
