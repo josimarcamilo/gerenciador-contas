@@ -25,6 +25,20 @@ jobs:
       run: |
         ls ${{ github.workspace }}
         
+    - name: Obter Data e Hora
+      id: datetime
+      uses: actions/github-script@v4
+      with:
+        result-encoding: string
+        script: |
+          const date = new Date('${{ github.event.repository.updated_at }}');
+          const formattedDate = date.toISOString().replace(/[-:]/g, '').replace('T', '').split('.')[0];
+          console.log(formattedDate);
+
+    - name: Exibir Data e Hora Formatadas
+      run: |
+        echo 'Data e Hora Formatadas: ${{ steps.datetime.outputs.result }}'
+        
     - name: FTP upload
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
