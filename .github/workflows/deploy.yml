@@ -14,30 +14,24 @@ jobs:
       
     - name: Check out repository code
       uses: actions/checkout@v3
-
+        
+    - name: copy project to folder
+      run: zip -vr josimar.zip ${{ github.workspace }}/ -x '*.DS_Store'
+      
     - name: List files in the repository
       run: |
         ls ${{ github.workspace }}
         
-    - name: pasta anterior
-      run: |
-        cd .. |
-        pwd |
-        ls
+#     - name: Setup PHP without composer
+#       uses: shivammathur/setup-php@v2
+#       with:
+#         php-version: '8.1'
+#         tools: composer:v2
         
-    - name: Setup PHP without composer
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: '8.1'
-        tools: composer:v2
-        
-    - name: Install dependencies
-      run: |
-        php -v &&
-        composer install
-    
-    - name: Php extenciosn
-      run: php -m
+#     - name: Install dependencies
+#       run: |
+#         php -v &&
+#         composer install
   
 #   deploy:
 #     runs-on: ubuntu-latest
