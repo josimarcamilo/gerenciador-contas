@@ -26,10 +26,11 @@ jobs:
         ls ${{ github.workspace }}
         
     - name: Copy script
-      run: cp ./scripts/connect-ftp.php ../
+      run: cp ./scripts/zip-code.php ../
     
     - name: Execute script
-      run: cd ../ && php connect-ftp.php ${{ secrets.FTP_SERVER }} ${{ secrets.FTP_USER }} ${{ secrets.FTP_PASS }}
+      run: \
+        cd ../ ls && php zip-code.php ${{ secrets.FTP_SERVER }} ${{ secrets.FTP_USER }} ${{ secrets.FTP_PASS }}
 
 #     - name: Setup PHP without composer
 #       uses: shivammathur/setup-php@v2
