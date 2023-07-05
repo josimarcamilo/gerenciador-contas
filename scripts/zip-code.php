@@ -49,4 +49,4 @@ exec("zip -vr $dateTime.zip $dateTime/ -x '*.DS_Store'", $result, $resultCode);
 
 $ftp = connectFtp($ftp_server, $ftp_user_name, $ftp_user_pass);
 
-uploadCode($ftp, $source_file, "$dateTime.zip");
+uploadCode($ftp, "$dateTime.zip", "$dateTime.zip");

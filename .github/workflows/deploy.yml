@@ -17,19 +17,36 @@ jobs:
       
     - name: Create folder build
       run: mkdir build
+      
+    - name: Get current date
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M')"
         
-#     - name: copy project to folder
-#       run: zip -vr build/josimar.zip ./ -x '*.DS_Store' '*.git*' '*.github*'
+    - name: copy project to folder
+      run: zip -vr build/${{ steps.date.outputs.date }}.zip ./ -x '*.DS_Store' '*.git*' '*.github*'
       
     - name: List files in the repository
       run: |
-        ls ${{ github.workspace }}
+        ls build
         
-    - name: Copy script
-      run: cp ./scripts/connect-ftp.php ../
+    - name: FTP upload
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      with:
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USER }}
+        password: ${{ secrets.FTP_PASS }}
+        server-dir: ./
+        local-dir: ${{ github.workspace }}/build/
+        
+#     - name: Copy script
+#       run: cp ./scripts/zip-code.php ../
     
-    - name: Execute script
-      run: cd ../ && php connect-ftp.php ${{ secrets.FTP_SERVER }} ${{ secrets.FTP_USER }} ${{ secrets.FTP_PASS }}
+#     - name: Execute script
+#       run: |
+#         cd ../
+#         pwd
+#         ls
+#         php zip-code.php ${{ secrets.FTP_SERVER }} ${{ secrets.FTP_USER }} ${{ secrets.FTP_PASS }}
 
 #     - name: Setup PHP without composer
 #       uses: shivammathur/setup-php@v2
