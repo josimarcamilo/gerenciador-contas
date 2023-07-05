@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\ExtractController;
 use App\Http\Controllers\FinancialAreaController;
@@ -17,6 +18,18 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+/* AUTH */
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function () {
+    Route::post('login', [ApiAuthController::class,'login']);
+    Route::post('logout', [ApiAuthController::class,'logout']);
+    Route::post('refresh', [ApiAuthController::class,'refresh']);
+    Route::post('me', [ApiAuthController::class,'me']);
+});
 
 /* USUARIOS */
 

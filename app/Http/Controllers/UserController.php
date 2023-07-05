@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -17,8 +16,6 @@ class UserController extends Controller
             'email',
             'password',
         ]);
-
-        $credentials['password'] = Hash::make($req->password);
 
         $user = User::create($credentials);
 

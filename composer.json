@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.7",
         "laravel/ui": "^4.2",
         "predis/predis": "^2.0",
+        "tymon/jwt-auth": "^2.0",
         "vinkla/hashids": "^10.0"
     },
     "require-dev": {
