@@ -20,10 +20,12 @@ jobs:
       
     - name: Get current date
       id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d-%H-%M')"
+      run: echo "::set-output name=date::$(date +'%Y%m%d%H%M')"
         
     - name: copy project to folder
-      run: zip -vr build/${{ steps.date.outputs.date }}.zip ./ -x '*.DS_Store' '*.git*' '*.github*'
+      run: |
+        echo "release ${{ steps.date.outputs.date }}""
+        zip -vr build/${{ steps.date.outputs.date }}.zip ./ -x '*.DS_Store' '*.git*' '*.github*'
       
     - name: List files in the repository
       run: |
