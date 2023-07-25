@@ -24,7 +24,7 @@ jobs:
         
     - name: copy project to folder
       run: |
-        echo "release ${{ steps.date.outputs.date }}""
+        echo "release ${{ steps.date.outputs.date }}"
         zip -vr build/${{ steps.date.outputs.date }}.zip ./ -x '*.DS_Store' '*.git*' '*.github*'
       
     - name: List files in the repository
