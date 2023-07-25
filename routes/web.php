@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('version', function () {
-    $version = file_get_contents('../version.txt');
-    return response()->json(['version' => $version]);
+    return response()->json(['version' => '1.1']);
 });
 
 Route::get('/', function () {
