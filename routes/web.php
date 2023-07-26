@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('version', function () {
-    return response()->json(['version' => '1.1']);
+    return response()->json(['version' => '1.2']);
 });
 
 Route::get('/', function () {

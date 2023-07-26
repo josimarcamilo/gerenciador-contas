@@ -102,4 +102,14 @@ if ($result === false) {
     echo("link criado com sucesso $last_version para current ". PHP_EOL);
 }
 
+echo("criando link limbolico para o .env". PHP_EOL);
+exec("ln -s ~/releases/shared/.env ~/releases/$last_version/.env", $result, $resultCode);
+
+if ($result === false) {
+    echo "erro ao criar o link do .env.". PHP_EOL;
+    return;
+} else {
+    echo("link do .env criado com sucesso!". PHP_EOL);
+}
+
 echo(PHP_EOL. "versao $last_version publicada". PHP_EOL);
