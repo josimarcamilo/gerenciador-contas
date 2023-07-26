@@ -20,6 +20,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
+        "friendsofphp/php-cs-fixer": "^3.22",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
@@ -51,7 +52,16 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "check-style": "composer style-1 && composer style-2 && composer style-3 && composer style-4 && composer style-5 && composer style-6 && composer style-7",
+        "style-1": "./vendor/bin/php-cs-fixer fix --diff --verbose --dry-run app",
+        "style-2": "./vendor/bin/php-cs-fixer fix --diff --verbose --dry-run config",
+        "style-3": "./vendor/bin/php-cs-fixer fix --diff --verbose --dry-run database",
+        "style-4": "./vendor/bin/php-cs-fixer fix --diff --verbose --dry-run lang",
+        "style-5": "./vendor/bin/php-cs-fixer fix --diff --verbose --dry-run routes",
+        "style-6": "./vendor/bin/php-cs-fixer fix --diff --verbose --dry-run scripts",
+        "style-7": "./vendor/bin/php-cs-fixer fix --diff --verbose --dry-run tests",
+        "fix-style": "./vendor/bin/php-cs-fixer fix"
     },
     "extra": {
         "laravel": {
