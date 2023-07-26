@@ -14,9 +14,18 @@ jobs:
       
     - name: Check out repository code
       uses: actions/checkout@v3
+
+    - name: Setup PHP without composer
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        tools: composer:v2
       
     - name: Create folder build
       run: mkdir build
+    
+    - name: Instalando as dependencias
+      run: composer install --optimize-autoloader --no-dev
       
     - name: Get current date
       id: date
@@ -26,6 +35,10 @@ jobs:
       run: |
         echo "release ${{ steps.date.outputs.date }}"
         zip -vr build/${{ steps.date.outputs.date }}.zip ./ -x '*.DS_Store' '*.git*' '*.github*'
+
+    - name: copy file deploy.php
+      run: |
+        cp ./version/deploy.php build/
       
     - name: List files in the repository
       run: |
