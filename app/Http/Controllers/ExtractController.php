@@ -19,12 +19,12 @@ class ExtractController extends Controller
             'amount' => 'required',
             'category' => 'nullable',
             'due_date' => 'nullable',
-            'status' => 'nullable'
+            'status' => 'nullable',
         ]);
 
         $financialPlanning = FinancialPlanning::where('uuid', $fields['financial_planning_code'])->first();
 
-        if (! $financialPlanning) {
+        if (!$financialPlanning) {
             throw new Exception('Financial Planning not found');
         }
 
@@ -32,7 +32,7 @@ class ExtractController extends Controller
             $category = Budget::where('id', $req->category)
                 ->where('financial_planning_id', $financialPlanning->id)->first();
 
-            if (! $category) {
+            if (!$category) {
                 throw new Exception('Entity Budget not found');
             }
         }
@@ -56,7 +56,7 @@ class ExtractController extends Controller
     {
         $financialPlanning = FinancialPlanning::where('uuid', $planning)->first();
 
-        if (! $financialPlanning) {
+        if (!$financialPlanning) {
             throw new Exception('Financial Planning not found');
         }
 
@@ -80,13 +80,13 @@ class ExtractController extends Controller
     {
         $model = Extract::find($id);
 
-        if (! $model) {
+        if (!$model) {
             throw new Exception('Entity not found');
         }
 
         $financialPlanning = FinancialPlanning::where('uuid', $request->financial_planning_code)->first();
 
-        if (! $financialPlanning) {
+        if (!$financialPlanning) {
             throw new Exception('Entity not found');
         }
 
@@ -94,7 +94,7 @@ class ExtractController extends Controller
             $category = Budget::where('id', $request->category)
                 ->where('financial_planning_id', $financialPlanning->id)->first();
 
-            if (! $category) {
+            if (!$category) {
                 throw new Exception('Entity Budget not found');
             }
         }

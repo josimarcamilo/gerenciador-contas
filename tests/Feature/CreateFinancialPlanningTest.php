@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\FinancialArea;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class CreateFinancialPlanningTest extends TestCase
@@ -26,7 +25,6 @@ class CreateFinancialPlanningTest extends TestCase
 
         $json = $response->json();
         $response->assertStatus(201);
-
 
         $this->assertNotNull($json['id']);
         $this->assertNotNull($json['status']);

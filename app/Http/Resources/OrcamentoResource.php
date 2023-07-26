@@ -20,7 +20,7 @@ class OrcamentoResource extends JsonResource
             'descricao' => $this->descricao,
             'padrao' => $this->padrao,
             'visibilidade' => $this->visibilidade,
-            'distribuicao' => $this->distribuicoes
+            'distribuicao' => $this->distribuicoes,
         ];
     }
 }

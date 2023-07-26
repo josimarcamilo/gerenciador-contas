@@ -14,7 +14,7 @@ class Conta extends Model
 
     const STATUS_DESCRIPTION = [
         self::PENDENTE => 'Pendente',
-        self::QUITADA => 'Quitada'
+        self::QUITADA => 'Quitada',
     ];
 
     const APAGAR = 1;
@@ -22,7 +22,7 @@ class Conta extends Model
 
     const TYPE_DESCRIPTION = [
         self::APAGAR => 'A pagar',
-        self::ARECEBER => 'A Receber'
+        self::ARECEBER => 'A Receber',
     ];
 
     protected $fillable = [
@@ -31,7 +31,7 @@ class Conta extends Model
         'status',
         'valor',
         'vencimento',
-        'user_id'
+        'user_id',
     ];
 
     public function user()
@@ -48,7 +48,7 @@ class Conta extends Model
     {
         $string = [];
 
-        foreach($this->tags as $tag) {
+        foreach ($this->tags as $tag) {
             $string[] = $tag->nome;
         }
 

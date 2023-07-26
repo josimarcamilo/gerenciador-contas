@@ -16,7 +16,7 @@ class FinancialPlanningSeeder extends Seeder
      */
     public function run()
     {
-        $uuid = "0708efc7-3abc-3a08-9ae4-49f35bfc26fd";
+        $uuid = '0708efc7-3abc-3a08-9ae4-49f35bfc26fd';
         $userDefault = User::where('email', 'admin@orfed.com.br')->first();
 
         $financialArea = $userDefault->financialAreas->first();
@@ -25,7 +25,7 @@ class FinancialPlanningSeeder extends Seeder
             'uuid' => $uuid,
             'financial_area_id' => $financialArea->id,
             'reference_month' => '2023-04',
-            'status' => FinancialPlanning::OPEN
+            'status' => FinancialPlanning::OPEN,
         ]);
     }
 }

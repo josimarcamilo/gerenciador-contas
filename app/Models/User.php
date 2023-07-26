@@ -29,7 +29,7 @@ class User extends Authenticatable implements JWTSubject
         'city',
         'country',
         'postal',
-        'about'
+        'about',
     ];
 
     /**
@@ -69,7 +69,7 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [
-            'email' => $this->email
+            'email' => $this->email,
         ];
     }
 
@@ -77,8 +77,8 @@ class User extends Authenticatable implements JWTSubject
      * Always encrypt the password when it is updated.
      *
      * @param $value
-    * @return string
-    */
+     * @return string
+     */
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);

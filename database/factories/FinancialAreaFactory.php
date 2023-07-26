@@ -21,7 +21,7 @@ class FinancialAreaFactory extends Factory
         return [
             'uuid' => (new Uuid())->uuid3(),
             'description' => uniqid(),
-            'user_id' => User::factory()->create()->id
+            'user_id' => User::factory()->create()->id,
         ];
     }
 }

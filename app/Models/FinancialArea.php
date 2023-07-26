@@ -11,7 +11,7 @@ class FinancialArea extends Model
 
     protected $hidden = [
         'id',
-        'user_id'
+        'user_id',
     ];
 
     public function admin()

@@ -5,13 +5,11 @@ namespace Tests\Feature;
 use App\Models\Budget;
 use App\Models\Extract;
 use App\Models\FinancialPlanning;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class CreateExtractTest extends TestCase
 {
     /**
-     *
      * @return void
      */
     public function test_create_entry_successfull()
@@ -33,7 +31,6 @@ class CreateExtractTest extends TestCase
     }
 
     /**
-     *
      * @return void
      */
     public function test_create_credit_card_successfull()
@@ -55,7 +52,6 @@ class CreateExtractTest extends TestCase
     }
 
     /**
-     *
      * @return void
      */
     public function test_create_exit_successfull()
@@ -77,7 +73,7 @@ class CreateExtractTest extends TestCase
             'amount' => 70000,
             'category' => $budgetTest->id,
             'due_date' => now(),
-            'status' => Extract::PENDING
+            'status' => Extract::PENDING,
         ]);
 
         $response->assertStatus(201);

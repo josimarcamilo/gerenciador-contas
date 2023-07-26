@@ -10,7 +10,7 @@ class Budget extends Model
     use HasFactory;
 
     protected $hidden = [
-        'financial_planning_id'
+        'financial_planning_id',
     ];
 
     public function financialPlanning()

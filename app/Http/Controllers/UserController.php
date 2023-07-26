@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -26,8 +26,8 @@ class UserController extends Controller
 
     public function storeToken(Request $req)
     {
-        if (! Auth::attempt(['email'=> $req->email, 'password'=>$req->password])) {
-            return response()->json(["error" => "invalid crentials"], 400);
+        if (!Auth::attempt(['email'=> $req->email, 'password'=>$req->password])) {
+            return response()->json(['error' => 'invalid crentials'], 400);
         }
 
         $req->user()->tokens()->delete();

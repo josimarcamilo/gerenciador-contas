@@ -9,10 +9,10 @@ class ApiAuthController extends Controller
     protected JWTGuard $auth;
 
     /**
-    * Create a new AuthController instance.
-    *
-    * @return void
-    */
+     * Create a new AuthController instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login']]);
@@ -28,7 +28,7 @@ class ApiAuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
-        if (! $token = $this->auth->attempt($credentials)) {
+        if (!$token = $this->auth->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -79,7 +79,7 @@ class ApiAuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => $this->auth->factory()->getTTL() * 60
+            'expires_in' => $this->auth->factory()->getTTL() * 60,
         ]);
     }
 }

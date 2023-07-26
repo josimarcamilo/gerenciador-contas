@@ -23,19 +23,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'middleware' => 'api',
-    'prefix' => 'auth'
+    'prefix' => 'auth',
 ], function () {
-    Route::post('login', [ApiAuthController::class,'login']);
-    Route::post('logout', [ApiAuthController::class,'logout']);
-    Route::post('refresh', [ApiAuthController::class,'refresh']);
-    Route::post('me', [ApiAuthController::class,'me']);
+    Route::post('login', [ApiAuthController::class, 'login']);
+    Route::post('logout', [ApiAuthController::class, 'logout']);
+    Route::post('refresh', [ApiAuthController::class, 'refresh']);
+    Route::post('me', [ApiAuthController::class, 'me']);
 });
 
 /* USUARIOS */
 
 Route::post('/users', [UserController::class, 'store']);
 Route::post('/users/tokens', [UserController::class, 'storeToken']);
-
 
 /* ORCAMENTOS */
 

@@ -3,13 +3,11 @@
 namespace Tests\Feature;
 
 use App\Models\FinancialPlanning;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class CreateBudgetTest extends TestCase
 {
     /**
-     *
      * @return void
      */
     public function test_create_budget_successfull()
@@ -23,33 +21,33 @@ class CreateBudgetTest extends TestCase
             'categories' => [
                 [
                     'description' => 'me pagar',
-                    'percentage' => 10
+                    'percentage' => 10,
                 ],
                 [
                     'description' => 'doar',
-                    'percentage' => 10
+                    'percentage' => 10,
                 ],
                 [
                     'description' => 'pagar as contas',
-                    'percentage' => 50
+                    'percentage' => 50,
                 ],
                 [
                     'description' => 'investir para ser rico',
-                    'percentage' => 10
+                    'percentage' => 10,
                 ],
                 [
                     'description' => 'poupar para os sonhos',
-                    'percentage' => 10
+                    'percentage' => 10,
                 ],
                 [
                     'description' => 'abundar',
-                    'percentage' => 10
+                    'percentage' => 10,
                 ],
                 [
                     'description' => 'pagar dívidas',
-                    'percentage' => 0
+                    'percentage' => 0,
                 ],
-            ]
+            ],
         ]);
 
         $response->assertStatus(201);

@@ -13,13 +13,13 @@ class BudgetController extends Controller
     public function store(Request $req)
     {
         $fields = $req->validate([
-            "financial_planning_code" => 'required',
-            "categories" => 'required|array'
+            'financial_planning_code' => 'required',
+            'categories' => 'required|array',
         ]);
 
         $financialPlanning = FinancialPlanning::where('uuid', $fields['financial_planning_code'])->first();
 
-        if (! $financialPlanning) {
+        if (!$financialPlanning) {
             throw new Exception('error');
         }
 
@@ -50,7 +50,7 @@ class BudgetController extends Controller
     {
         $financialPlanning = FinancialPlanning::where('uuid', $planning)->first();
 
-        if (! $financialPlanning) {
+        if (!$financialPlanning) {
             throw new Exception('error');
         }
 
@@ -68,7 +68,7 @@ class BudgetController extends Controller
     {
         $model = Budget::find($id);
 
-        if (! $model) {
+        if (!$model) {
             throw new Exception('Entity not found');
         }
 

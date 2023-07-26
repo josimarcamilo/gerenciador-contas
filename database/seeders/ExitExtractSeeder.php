@@ -27,7 +27,7 @@ class ExitExtractSeeder extends Seeder
                 fn ($sequence) => [
                     'description' => fake()->name,
                     'amount' => fake()->numberBetween(1000, 100000),
-                    'category' => $financialPlanning->budget->random()
+                    'category' => $financialPlanning->budget->random(),
                 ],
             ))->create();
     }

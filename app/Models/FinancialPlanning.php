@@ -14,7 +14,7 @@ class FinancialPlanning extends Model
 
     protected $hidden = [
         'id',
-        'financial_area_id'
+        'financial_area_id',
     ];
 
     public function financialArea()

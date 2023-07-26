@@ -18,13 +18,13 @@ class FinancialPlanningController extends Controller
     public function store(Request $req)
     {
         $fields = $req->validate([
-            "financial_area_code" => 'required',
-            "reference_month" => 'required'
+            'financial_area_code' => 'required',
+            'reference_month' => 'required',
         ]);
 
         $financialArea = FinancialArea::where('uuid', $fields['financial_area_code'])->first();
 
-        if (! $financialArea) {
+        if (!$financialArea) {
             throw new Exception('error');
         }
 
@@ -59,7 +59,7 @@ class FinancialPlanningController extends Controller
     {
         $financialArea = FinancialArea::where('uuid', $area)->first();
 
-        if (! $financialArea) {
+        if (!$financialArea) {
             throw new Exception('error');
         }
 
@@ -90,7 +90,7 @@ class FinancialPlanningController extends Controller
     {
         $model = FinancialPlanning::where('uuid', $id)->first();
 
-        if (! $model) {
+        if (!$model) {
             throw new Exception('Entity not found');
         }
 

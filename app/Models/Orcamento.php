@@ -14,12 +14,14 @@ class Orcamento extends Model
     public static function encode($id)
     {
         $hash = new Hashids('orcamento', 4);
-        return 'orc'.$hash->encode($id);
+
+        return 'orc' . $hash->encode($id);
     }
 
     public static function decode($hash)
     {
         $value = substr($hash, 3);
+
         return (new Hashids('orcamento', 4))->decode($value)[0];
     }
 
@@ -35,25 +37,25 @@ class Orcamento extends Model
 
     public function criar($campos)
     {
-        try{
+        try {
             DB::beginTransaction();
             $orcamentoId = DB::table('orcamentos')->insertGetId([
-                'descricao' => $campos["descricao"],
+                'descricao' => $campos['descricao'],
                 'padrao' => false,
-                'visibilidade' => $campos["visibilidade"],
+                'visibilidade' => $campos['visibilidade'],
                 'user_id' => auth()->user()->id,
             ]);
 
-            foreach($campos["distribuicao"] as $valores){
+            foreach ($campos['distribuicao'] as $valores) {
                 $distribuicao = DB::table('distribuicao')->insertGetId([
-                    'descricao' => $valores["descricao"],
-                    'porcentagem' => $valores["porcentagem"],
-                    'orcamento_id'=> $orcamentoId
+                    'descricao' => $valores['descricao'],
+                    'porcentagem' => $valores['porcentagem'],
+                    'orcamento_id'=> $orcamentoId,
                 ]);
-            }           
+            }
 
             DB::commit();
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             DB::rollBack();
         }
     }

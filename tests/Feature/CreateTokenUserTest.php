@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class CreateTokenUserTest extends TestCase
@@ -20,9 +19,8 @@ class CreateTokenUserTest extends TestCase
         $response = $this->post('/api/users/tokens', [
             'email' => $user->email,
             'password' => 'password',
-            'token_name' => 'token'
+            'token_name' => 'token',
         ]);
-
 
         $json = $response->json();
         $response->assertStatus(200);

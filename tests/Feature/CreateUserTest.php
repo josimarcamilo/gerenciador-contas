@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class CreateUserTest extends TestCase
@@ -16,8 +15,8 @@ class CreateUserTest extends TestCase
     {
         $response = $this->post('/api/users', [
             'name' => uniqid('user_'),
-            'email' => uniqid('email_'). '@test.com',
-            'password' => uniqid()
+            'email' => uniqid('email_') . '@test.com',
+            'password' => uniqid(),
         ]);
 
         $response->assertStatus(200);
@@ -33,11 +32,11 @@ class CreateUserTest extends TestCase
 
         $this->assertDatabaseHas('users', [
             'name' => $json['name'],
-            'email' => $json['email']
+            'email' => $json['email'],
         ]);
 
         $this->assertDatabaseHas('financial_areas', [
-            'description' => $json['name']
+            'description' => $json['name'],
         ]);
     }
 }

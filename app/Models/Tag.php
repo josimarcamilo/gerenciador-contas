@@ -12,7 +12,7 @@ class Tag extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'nome'
+        'nome',
     ];
 
     public function contas()

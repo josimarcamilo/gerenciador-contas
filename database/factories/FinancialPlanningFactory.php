@@ -23,7 +23,7 @@ class FinancialPlanningFactory extends Factory
             'uuid' => (new Uuid())->uuid3(),
             'financial_area_id' => FinancialArea::factory()->create()->id,
             'reference_month' => now()->format('Y-m'),
-            'status' => FinancialPlanning::OPEN
+            'status' => FinancialPlanning::OPEN,
         ];
     }
 }
