@@ -38,7 +38,7 @@ jobs:
 
     - name: copy file deploy.php
       run: |
-        cp ./version/deploy.php build/
+        cp ./versions/deploy.php build/
       
     - name: List files in the repository
       run: |
