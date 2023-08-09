@@ -2,40 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreOrcamentoRequest;
+use App\Http\Requests\UpdateOrcamentoRequest;
+use App\Models\Orcamento;
 
-class ExtractWebController extends Controller
+class OrcamentoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function entry()
-    {
-        return view('pages.entrys');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function exit()
-    {
-        return view('pages.exits');
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function creditCard()
-    {
-        return view('pages.credit-card');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -43,7 +15,7 @@ class ExtractWebController extends Controller
      */
     public function index()
     {
-        //
+        return view('pages.orcamentos');
     }
 
     /**
@@ -59,10 +31,10 @@ class ExtractWebController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreOrcamentoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreOrcamentoRequest $request)
     {
         //
     }
@@ -70,10 +42,10 @@ class ExtractWebController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Orcamento  $orcamento
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Orcamento $orcamento)
     {
         //
     }
@@ -81,10 +53,10 @@ class ExtractWebController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Orcamento  $orcamento
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Orcamento $orcamento)
     {
         //
     }
@@ -92,11 +64,11 @@ class ExtractWebController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Http\Requests\UpdateOrcamentoRequest  $request
+     * @param  \App\Models\Orcamento  $orcamento
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateOrcamentoRequest $request, Orcamento $orcamento)
     {
         //
     }
@@ -104,10 +76,10 @@ class ExtractWebController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Orcamento  $orcamento
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Orcamento $orcamento)
     {
         //
     }
