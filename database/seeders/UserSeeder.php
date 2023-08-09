@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Conta;
+use App\Models\User;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class UserSeeder extends Seeder
 {
@@ -14,13 +15,18 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        // bcrypt('secret')
-        DB::table('users')->updateOrInsert([
-            'username' => 'admin',
-            'firstname' => 'Admin',
-            'lastname' => 'Admin',
-            'email' => 'admin@orfed.com.br',
-            'password' => '$2y$10$RiUxrJkNYS9x0WZ61FQYCOw.3qo.4TWCSSIsZqyfz4XuMuIB14Bta',
-        ]);
+        $user = User::updateOrCreate(
+            [
+                'email' => User::EMAIL_PADRAO,
+            ],
+            [
+                'username' => 'admin',
+                'firstname' => 'Admin',
+                'lastname' => 'Admin',
+                'password' => 'a',
+            ]
+        );
+
+        Conta::updateOrCreate(['user_id' => $user->id]);
     }
 }

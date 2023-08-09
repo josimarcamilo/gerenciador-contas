@@ -15,12 +15,9 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            FinancialAreaSeeder::class,
-            FinancialPlanningSeeder::class,
-            BudgetSeeder::class,
-            EntryExtractSeeder::class,
-            ExitExtractSeeder::class,
-            CreditCardExtractSeeder::class,
+            OrcamentoSeeder::class,
+            CategoriaSeeder::class,
+            ExtratoSeeder::class
         ]);
     }
 }
