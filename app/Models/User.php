@@ -14,6 +14,8 @@ class User extends Authenticatable implements JWTSubject
     use HasFactory;
     use Notifiable;
 
+    const EMAIL_PADRAO = 'orfed@orfed.com.br';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -84,8 +86,8 @@ class User extends Authenticatable implements JWTSubject
         $this->attributes['password'] = bcrypt($value);
     }
 
-    public function financialAreas()
+    public function conta()
     {
-        return $this->hasMany(FinancialArea::class);
+        return $this->hasOne(Conta::class);
     }
 }
