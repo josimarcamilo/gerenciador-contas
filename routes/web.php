@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Http\Controllers\OrcamentoController;
 
 Route::get('version', function () {
     return response()->json(['version' => '1.2']);
@@ -24,6 +25,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('orcamentos', OrcamentoController::class);
 
 require __DIR__ . '/auth.php';
 
@@ -60,4 +63,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/entrys', [ExtractWebController::class, 'entry'])->name('entry');
     Route::get('/exits', [ExtractWebController::class, 'exit'])->name('exit');
     Route::get('/credit-card', [ExtractWebController::class, 'creditCard'])->name('credit_card');
+
 });
+
