@@ -18,10 +18,9 @@ class OrcamentoSeeder extends Seeder
         $user = User::where('email', User::EMAIL_PADRAO)->first();
 
         for($count = 0; $count < 3; $count++){
-
             Orcamento::updateOrCreate([
                 'conta_id' => $user->conta->id,
-                'mes' => now()->addMonth($count),
+                'mes' => now()->addMonth($count)->format('Y-m-d'),
             ]);
         }
     }
