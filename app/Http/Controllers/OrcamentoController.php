@@ -59,7 +59,7 @@ class OrcamentoController extends Controller
      */
     public function edit(Orcamento $orcamento)
     {
-        //
+        return $orcamento->load('categorias');
     }
 
     /**

@@ -24,11 +24,13 @@
                                     @foreach ($orcamentos as $orcamento)
                                         <tr class="cursor-pointer">
                                             <td>
-                                                <div class="d-flex px-2 py-1">
-                                                    <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">{{$orcamento->mes->format('m-Y')}}</h6>
+                                                <a href="{{ route('orcamentos.edit',[$orcamento->id] ) }}">
+                                                    <div class="d-flex px-2 py-1">
+                                                        <div class="d-flex flex-column justify-content-center">
+                                                            <h6 class="mb-0 text-sm">{{$orcamento->mes->format('m-Y')}}</h6>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </a>
                                             </td>
                                         </tr>
                                     @endforeach

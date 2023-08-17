@@ -31,7 +31,6 @@ Route::resource('orcamentos', OrcamentoController::class);
 require __DIR__ . '/auth.php';
 
 use App\Http\Controllers\ChangePassword;
-use App\Http\Controllers\ExtractWebController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PageController;
@@ -59,10 +58,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/sign-up-static', [PageController::class, 'signup'])->name('sign-up-static');
     Route::get('/{page}', [PageController::class, 'index'])->name('page');
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
-
-    Route::get('/entrys', [ExtractWebController::class, 'entry'])->name('entry');
-    Route::get('/exits', [ExtractWebController::class, 'exit'])->name('exit');
-    Route::get('/credit-card', [ExtractWebController::class, 'creditCard'])->name('credit_card');
 
 });
 
