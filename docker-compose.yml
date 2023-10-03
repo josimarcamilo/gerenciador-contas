@@ -1,5 +1,5 @@
 version: '3.9'
-services:  
+services:
 
   app:
     build: .
@@ -11,7 +11,7 @@ services:
        - ./:/var/www
     networks:
       - default
-  
+
   nginx:
     image: nginx:alpine
     container_name: contas_nginx
@@ -26,6 +26,30 @@ services:
       - default
     depends_on:
       - app
+
+  mysql:
+      image: mysql:latest
+      container_name: mysql
+      restart: unless-stopped
+      env_file: .env
+      environment:
+          MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+          MYSQL_PASSWORD: ${DB_PASSWORD}
+          MYSQL_USER: ${DB_USERNAME}
+          MYSQL_DATABASE: ${DB_DATABASE}
+      networks:
+         - default
+      ports:
+          - "3309:3306"
+      volumes:
+          - ./.db:/var/lib/mysql
+
+  mailhog:
+      image: mailhog/mailhog:latest
+      restart: always
+      ports:
+          - "1025:1025"
+          - "8025:8025"
 
 networks:
   default:

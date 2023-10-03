@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'firstname' => 'Admin',
             'lastname' => 'Admin',
             'email' => 'admin@orfed.com.br',
-            'password' => '$2y$10$RiUxrJkNYS9x0WZ61FQYCOw.3qo.4TWCSSIsZqyfz4XuMuIB14Bta',
+            'password' => bcrypt('admin'),
         ]);
     }
 }
