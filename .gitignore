@@ -16,3 +16,4 @@ yarn-error.log
 /versions/*.zip
 /versions/20*
 /versions/.*
+public/spa/*

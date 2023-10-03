@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +10,21 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrcamentoController;
+use App\Http\Controllers\SpaController;
+use App\Http\Controllers\ChangePassword;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ResetPassword;
+use App\Http\Controllers\UserProfileController;
+
+
+Route::get('app', [SpaController::class, 'index'])->name('app');
+Route::get('app/{any}', [SpaController::class, 'index'])->where('any', '.*')->name('spa');
 
 Route::get('version', function () {
     return response()->json(['version' => '1.2']);
@@ -29,14 +41,6 @@ Route::get('/dashboard', function () {
 Route::resource('orcamentos', OrcamentoController::class);
 
 require __DIR__ . '/auth.php';
-
-use App\Http\Controllers\ChangePassword;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\ResetPassword;
-use App\Http\Controllers\UserProfileController;
 
 Route::get('/', function () {return redirect('/dashboard'); })->middleware('auth');
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
