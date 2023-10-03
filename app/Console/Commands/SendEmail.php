@@ -27,6 +27,8 @@ class SendEmail extends Command
      */
     public function handle(): void
     {
-        $result = Mail::to('josimarifmg@gmail.com')->send(new MailTest());
+        Mail::to('josimarifmg@gmail.com')->send(new MailTest());
+
+        $this->info('Email send success');
     }
 }
