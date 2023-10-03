@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
                 'username' => 'admin',
                 'firstname' => 'Admin',
                 'lastname' => 'Admin',
-                'password' => 'a',
+                'password' => 'admin',
             ]
         );
 
