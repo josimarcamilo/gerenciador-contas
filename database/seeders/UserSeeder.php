@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,12 +16,12 @@ class UserSeeder extends Seeder
     public function run()
     {
         // bcrypt('secret')
-        DB::table('users')->updateOrInsert([
+       User::create([
             'username' => 'admin',
             'firstname' => 'Admin',
             'lastname' => 'Admin',
             'email' => 'admin@orfed.com.br',
-            'password' => bcrypt('admin'),
+            'password' => 'admin',
         ]);
     }
 }

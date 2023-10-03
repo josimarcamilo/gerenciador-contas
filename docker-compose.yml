@@ -48,8 +48,8 @@ services:
       image: mailhog/mailhog:latest
       restart: always
       ports:
-          - "1025:1025"
-          - "8025:8025"
+          - ${MAIL_PORT}:1025
+          - ${MAIL_PORT_WEB}:8025
 
 networks:
   default:
