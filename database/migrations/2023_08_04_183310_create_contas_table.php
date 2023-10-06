@@ -13,9 +13,9 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('contas', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->timestamps();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')->constrained();
             $table->string('descricao')->default('Administração de riqueza');
         });
     }

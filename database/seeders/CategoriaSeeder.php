@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Categoria;
 use App\Models\Orcamento;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class CategoriaSeeder extends Seeder
@@ -25,13 +26,16 @@ class CategoriaSeeder extends Seeder
             'quitar as dívidas',
         ];
 
-        Orcamento::all()->each(function ($orcamento) use ($categorias) {
+        $user = User::where('email', User::EMAIL_PADRAO)->first();
+
+        foreach(Orcamento::all() as $orcamento){
             foreach ($categorias as $categoria) {
                 Categoria::updateOrCreate([
+                    'conta_id' => $user->conta->id,
                     'orcamento_id' => $orcamento->id,
                     'descricao' => $categoria,
                 ]);
             }
-        });
+        };
     }
 }

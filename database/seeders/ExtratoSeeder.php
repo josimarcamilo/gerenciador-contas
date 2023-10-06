@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Extrato;
 use App\Models\Orcamento;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class ExtratoSeeder extends Seeder
@@ -15,12 +16,15 @@ class ExtratoSeeder extends Seeder
      */
     public function run()
     {
-        Orcamento::all()->each(function ($orcamento) {
+        $user = User::where('email', User::EMAIL_PADRAO)->first();
+
+        foreach(Orcamento::all() as $orcamento) {
             //receita
             for($i = 0; $i<5; $i++){
                 $descricao = fake()->name();
                 $valor = fake()->numberBetween(1000, 100000);
                 Extrato::updateOrCreate([
+                    'conta_id' => $user->conta->id,
                     'orcamento_id' => $orcamento->id,
                     'tipo' => Extrato::RECEITA,
                     'descricao' => $descricao,
@@ -33,6 +37,7 @@ class ExtratoSeeder extends Seeder
                 $descricao = fake()->name();
                 $valor = fake()->numberBetween(1000, 100000);
                 Extrato::updateOrCreate([
+                    'conta_id' => $user->conta->id,
                     'orcamento_id' => $orcamento->id,
                     'tipo' => Extrato::DESPESA,
                     'descricao' => $descricao,
@@ -48,6 +53,7 @@ class ExtratoSeeder extends Seeder
                 $descricao = fake()->name();
                 $valor = fake()->numberBetween(1000, 100000);
                 Extrato::updateOrCreate([
+                    'conta_id' => $user->conta->id,
                     'orcamento_id' => $orcamento->id,
                     'tipo' => Extrato::CARTAO,
                     'descricao' => $descricao,
@@ -56,6 +62,6 @@ class ExtratoSeeder extends Seeder
                     'status' => Extrato::PENDENTE
                 ]);
             }
-        });
+        };
     }
 }

@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('categorias', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->timestamps();
-            $table->foreignId('orcamento_id');
+            $table->foreignId('conta_id')->constrained();
+            $table->foreignId('orcamento_id')->constrained();
             $table->string('descricao');
         });
     }

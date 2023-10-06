@@ -14,15 +14,15 @@ return new class extends Migration
     public function up()
     {
         Schema::create('extratos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->timestamps();
-            $table->foreignId('orcamento_id');
+            $table->foreignId('conta_id')->constrained();
+            $table->foreignId('orcamento_id')->constrained();
             $table->smallInteger('tipo');
             $table->string('descricao');
             $table->unsignedInteger('valor');
             $table->smallInteger('status')->nullable();
-            $table->foreignId('categoria_id')->nullable();
-
+            $table->foreignId('categoria_id')->nullable()->constrained();
         });
     }
 
