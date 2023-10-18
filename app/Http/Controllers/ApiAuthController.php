@@ -2,8 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use OpenApi\Annotations as OA;
+use Throwable;
 use Tymon\JWTAuth\JWTGuard;
 
+/**
+ * @OA\Info(
+ *     title="My First API",
+ *     version="0.1"
+ * )
+ */
 class ApiAuthController extends Controller
 {
     protected JWTGuard $auth;
@@ -15,12 +23,24 @@ class ApiAuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('api', ['except' => ['login']]);
         $this->auth = auth('api');
     }
 
     /**
      * Get a JWT via given credentials.
+     *
+     * @OA\Post(
+     *     path="/api/login",
+     *     @OA\RequestBody(
+     *         response="200",
+     *         description="The data"
+     *     )
+     *     @OA\Response(
+     *         response="200",
+     *         description="The data"
+     *     )
+     * )
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -52,9 +72,13 @@ class ApiAuthController extends Controller
      */
     public function logout()
     {
-        $this->auth->logout();
+        try{
+            $this->auth->logout();
+            return response()->json(['message' => 'Successfully logged out']);
+        }catch(Throwable $th){
+            return response()->json(['message' => $th->getMessage()], 401);
+        }
 
-        return response()->json(['message' => 'Successfully logged out']);
     }
 
     /**
