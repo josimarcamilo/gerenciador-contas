@@ -30,22 +30,48 @@
           "users"
         ],
         "summary": "create one user",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/UserCreate"
+        "operationId": "createUser",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserCreate"
+              }
             }
           }
-        ],
+        },
         "responses": {
-          "200": {
-            "description": "The data"
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "properties": {
+                        "email": {
+                          "type": "string",
+                          "description": "email to user"
+                        },
+                        "updated_at": {
+                          "type": "string",
+                          "description": "date created user"
+                        },
+                        "created_at": {
+                          "type": "string",
+                          "description": "date updated user"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           },
-          "422": {
-            "description": "User already exists",
+          "401": {
+            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
@@ -54,6 +80,23 @@
                     "message": {
                       "type": "string",
                       "description": "Message of return",
+                      "example": "Token could not be parsed from the request."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Content",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "User already exists",
                       "example": "User already exists"
                     }
                   }
@@ -70,16 +113,16 @@
           "auth"
         ],
         "summary": "realiza login",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "query",
-            "required": false,
-            "schema": {
-              "$ref": "#/components/schemas/Login"
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
             }
           }
-        ],
+        },
         "responses": {
           "200": {
             "description": "Successfully logged out",
@@ -116,6 +159,7 @@
           "auth"
         ],
         "summary": "logout user",
+        "operationId": "logout",
         "security": [
           {
             "bearerAuth": []
@@ -140,7 +184,7 @@
             }
           },
           "401": {
-            "description": "Unauthenticated",
+            "description": "Unauthorized",
             "content": {
               "application/json": {
                 "schema": {
@@ -172,17 +216,17 @@
         "properties": {
           "name": {
             "description": "Name to user",
-            "default": "user test",
+            "example": "user test",
             "type": "string"
           },
           "email": {
             "description": "E-mail do usuário",
-            "default": "orfed@orfed.com.br",
+            "example": "orfed@orfed.com.br",
             "type": "string"
           },
           "password": {
             "description": "E-mail do usuário",
-            "default": "admin",
+            "example": "admin",
             "type": "string"
           }
         }
@@ -190,19 +234,18 @@
       "Login": {
         "type": "object",
         "required": [
-          "name",
           "email",
           "password"
         ],
         "properties": {
           "email": {
             "description": "E-mail do usuário",
-            "default": "orfed@orfed.com.br",
+            "example": "orfed@orfed.com.br",
             "type": "string"
           },
           "password": {
             "description": "E-mail do usuário",
-            "default": "admin",
+            "example": "admin",
             "type": "string"
           }
         }

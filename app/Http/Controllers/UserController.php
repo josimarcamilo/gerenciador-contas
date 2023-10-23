@@ -27,7 +27,7 @@ class UserController extends Controller
 
             event(new Registered($user));
 
-            return response()->json($user);
+            return response()->json(['data' => $user], 201);
         } catch (Throwable $th) {
             return response()->json([
                 'message' => $th->getMessage(),
