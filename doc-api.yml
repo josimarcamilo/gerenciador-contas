@@ -27,6 +27,17 @@ paths:
         responses:
           '200':
             description: The data
+          '422':
+            description: User already exists
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                      description: Message of return
+                      example: User already exists
   /api/auth/login:
     post:
       tags:
@@ -40,7 +51,23 @@ paths:
             $ref: '#/components/schemas/Login'
       responses:
         '200':
-          description: The data
+          description: Successfully logged out
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                    description: Message of return
+                  token_type:
+                    type: string
+                    description: Message of return
+                    example: bearer
+                  expires_in_minutes:
+                    type: integer
+                    description: Expires in minutes
+                    example: 1440
   /api/auth/logout:
     get:
       tags:

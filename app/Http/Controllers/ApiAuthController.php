@@ -72,10 +72,11 @@ class ApiAuthController extends Controller
      */
     public function logout()
     {
-        try{
+        try {
             $this->auth->logout();
+
             return response()->json(['message' => 'Successfully logged out']);
-        }catch(Throwable $th){
+        } catch (Throwable $th) {
             return response()->json(['message' => $th->getMessage()], 401);
         }
 
@@ -103,7 +104,7 @@ class ApiAuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => $this->auth->factory()->getTTL() * 60,
+            'expires_in_minutes' => $this->auth->factory()->getTTL(),
         ]);
     }
 }

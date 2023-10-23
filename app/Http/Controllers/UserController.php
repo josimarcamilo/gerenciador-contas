@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Throwable;
@@ -17,6 +18,10 @@ class UserController extends Controller
             'password',
         ]);
         try {
+
+            if (User::where('email', $credentials['email'])->exists()) {
+                throw new Exception('User already exists');
+            }
 
             $user = User::create($credentials);
 
