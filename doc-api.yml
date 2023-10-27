@@ -18,7 +18,7 @@ paths:
       tags:
         - users
       summary: create one user
-      operationId: createUser
+      operationId: create
       requestBody:
         content:
           application/json:
@@ -96,6 +96,43 @@ paths:
                     type: integer
                     description: Expires in minutes
                     example: 1440
+  /api/auth/me:
+    get:
+      tags:
+        - auth
+      summary: return user authenticated
+      operationId: me
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Message of return
+                  email:
+                    type: string
+                    description: Message of return
+  /api/auth/refresh:
+    post:
+      tags:
+        - auth
+      summary: return user authenticated
+      operationId: refresh
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Token'
   /api/auth/logout:
     get:
       tags:
@@ -162,6 +199,20 @@ components:
           description: E-mail do usuário
           example: admin
           type: string
+    Token:
+      type: object
+      properties:
+        access_token:
+          type: string
+          description: Message of return
+        token_type:
+          type: string
+          description: Message of return
+          example: bearer
+        expires_in_minutes:
+          type: integer
+          description: Expires in minutes
+          example: 1440
   responses:
     UnauthorizedError:
       description: Authentication information is missing or invalid
