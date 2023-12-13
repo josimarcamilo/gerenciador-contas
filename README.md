@@ -31,3 +31,5 @@ $payload['jti']; // = 'asfe4fq434asdf'
 $payload('exp') // = 123456
 $payload->toArray(); // = ['sub' => 123, 'exp' => 123456, 'jti' => 'asfe4fq434asdf'] etc
 ```
+# Ferramentas
+- [Para testes de webhooks: pipedream](https://pipedream.com/)
