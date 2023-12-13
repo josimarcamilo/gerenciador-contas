@@ -23,7 +23,7 @@ class ApiAuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login']]);
         $this->auth = auth('api');
     }
 
@@ -47,7 +47,7 @@ class ApiAuthController extends Controller
     public function login()
     {
         $credentials = request(['email', 'password']);
-
+        // Generate a token for the user if the credentials are valid
         if (!$token = $this->auth->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
