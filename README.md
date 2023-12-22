@@ -1,3 +1,12 @@
+# Installation back
+- clone o repositório
+- copie o .env.example para .env
+- rode: composer install
+- rode: php artisan serve
+# Installation front
+- cd frontend
+- npm install
+- npm run serve
 # Documentation API
 Rode: 
 ```php
