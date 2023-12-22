@@ -24,7 +24,7 @@ class ExtratoSeeder extends Seeder
                 $descricao = fake()->name();
                 $valor = fake()->numberBetween(1000, 100000);
                 Extrato::updateOrCreate([
-                    'conta_id' => $user->conta->id,
+                    'account_id' => $user->account->id,
                     'orcamento_id' => $orcamento->id,
                     'tipo' => Extrato::RECEITA,
                     'descricao' => $descricao,
@@ -37,7 +37,7 @@ class ExtratoSeeder extends Seeder
                 $descricao = fake()->name();
                 $valor = fake()->numberBetween(1000, 100000);
                 Extrato::updateOrCreate([
-                    'conta_id' => $user->conta->id,
+                    'account_id' => $user->account->id,
                     'orcamento_id' => $orcamento->id,
                     'tipo' => Extrato::DESPESA,
                     'descricao' => $descricao,
@@ -53,7 +53,7 @@ class ExtratoSeeder extends Seeder
                 $descricao = fake()->name();
                 $valor = fake()->numberBetween(1000, 100000);
                 Extrato::updateOrCreate([
-                    'conta_id' => $user->conta->id,
+                    'account_id' => $user->account->id,
                     'orcamento_id' => $orcamento->id,
                     'tipo' => Extrato::CARTAO,
                     'descricao' => $descricao,

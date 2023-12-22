@@ -19,7 +19,7 @@ class OrcamentoSeeder extends Seeder
 
         for($count = 0; $count < 3; $count++){
             Orcamento::updateOrCreate([
-                'conta_id' => $user->conta->id,
+                'account_id' => $user->account->id,
                 'mes' => now()->addMonth($count)->format('Y-m-d'),
             ]);
         }

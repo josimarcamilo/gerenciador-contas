@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Conta;
+use App\Models\Account;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -27,6 +27,6 @@ class UserSeeder extends Seeder
             ]
         );
 
-        Conta::updateOrCreate(['user_id' => $user->id]);
+        Account::updateOrCreate(['user_id' => $user->id]);
     }
 }

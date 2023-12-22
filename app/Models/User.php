@@ -87,9 +87,9 @@ class User extends Authenticatable implements JWTSubject
         $this->attributes['password'] = bcrypt($value);
     }
 
-    public function conta()
+    public function account()
     {
-        return $this->hasOne(Conta::class);
+        return $this->hasOne(Account::class);
     }
 
     protected function password(): Attribute

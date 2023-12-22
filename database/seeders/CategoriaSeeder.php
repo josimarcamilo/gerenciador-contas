@@ -31,7 +31,7 @@ class CategoriaSeeder extends Seeder
         foreach(Orcamento::all() as $orcamento){
             foreach ($categorias as $categoria) {
                 Categoria::updateOrCreate([
-                    'conta_id' => $user->conta->id,
+                    'account_id' => $user->account->id,
                     'orcamento_id' => $orcamento->id,
                     'descricao' => $categoria,
                 ]);

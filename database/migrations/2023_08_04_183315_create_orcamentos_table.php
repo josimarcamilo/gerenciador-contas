@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('orcamentos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->foreignId('conta_id')->constrained();
+            $table->foreignId('account_id')->constrained();
             $table->date('mes');
         });
     }

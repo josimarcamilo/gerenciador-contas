@@ -15,8 +15,8 @@ class OrcamentoController extends Controller
      */
     public function index()
     {
-        $conta = auth()->user()->conta;
-        return view('pages.orcamentos', ['orcamentos' => $conta->orcamentos]);
+        $account = auth()->user()->account;
+        return view('pages.orcamentos', ['orcamentos' => $account->orcamentos]);
     }
 
     /**

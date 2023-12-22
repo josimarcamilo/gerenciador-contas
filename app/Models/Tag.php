@@ -15,8 +15,8 @@ class Tag extends Model
         'nome',
     ];
 
-    public function contas()
+    public function account()
     {
-        return $this->belongsToMany(Conta::class);
+        return $this->belongsToMany(Account::class);
     }
 }
