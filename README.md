@@ -1,3 +1,12 @@
+# Documentation API
+Rode: 
+```php
+php artisan serve
+```
+Acesse: 
+```
+http://127.0.0.1:8000/docs/api
+```
 # Auth JWT
 Pacote utilizado: https://jwt-auth.readthedocs.io/en/develop/
 ## Generate secret key
