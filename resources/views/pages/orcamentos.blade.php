@@ -27,7 +27,7 @@
                                                 <a href="{{ route('orcamentos.edit',[$orcamento->id] ) }}">
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">{{$orcamento->mes->format('m-Y')}}</h6>
+                                                            <h6 class="mb-0 text-sm">{{$orcamento->month->format('m-Y')}}</h6>
                                                         </div>
                                                     </div>
                                                 </a>

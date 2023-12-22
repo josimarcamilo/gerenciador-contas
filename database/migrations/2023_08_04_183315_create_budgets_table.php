@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('orcamentos', function (Blueprint $table) {
+        Schema::create('budgets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->foreignId('account_id')->constrained();
-            $table->date('mes');
+            $table->foreignId('account_id')->constrained()->index();
+            $table->date('month');
         });
     }
 
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orcamentos');
+        Schema::dropIfExists('budgets');
     }
 };

@@ -9,8 +9,8 @@ class Account extends Model
 {
     use HasFactory;
 
-    public function orcamentos()
+    public function budgets()
     {
-        return $this->hasMany(Orcamento::class)->orderBy('id', 'desc');
+        return $this->hasMany(Budget::class)->orderBy('id', 'desc');
     }
 }

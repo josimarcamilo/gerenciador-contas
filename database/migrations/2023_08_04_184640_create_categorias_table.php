@@ -17,8 +17,10 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->timestamps();
             $table->foreignId('account_id')->constrained();
-            $table->foreignId('orcamento_id')->constrained();
+            $table->foreignId('budget_id')->constrained();
             $table->string('descricao');
+
+            $table->index(['account_id', 'budget_id']);
         });
     }
 

@@ -38,8 +38,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::resource('orcamentos', OrcamentoController::class);
-
 require __DIR__ . '/auth.php';
 
 Route::get('/', function () {return redirect('/dashboard'); })->middleware('auth');
