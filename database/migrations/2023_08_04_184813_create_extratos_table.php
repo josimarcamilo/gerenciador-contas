@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('extratos', function (Blueprint $table) {
+        Schema::create('extracts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
             $table->foreignId('account_id')->constrained();
             $table->foreignId('budget_id')->constrained();
-            $table->smallInteger('tipo');
-            $table->string('descricao');
-            $table->unsignedInteger('valor');
+            $table->smallInteger('type');
+            $table->string('description');
+            $table->unsignedInteger('value');
             $table->smallInteger('status')->nullable();
             $table->foreignId('category_id')->nullable()->constrained();
 
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('extratos');
+        Schema::dropIfExists('extracts');
     }
 };
