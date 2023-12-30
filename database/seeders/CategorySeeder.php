@@ -3,11 +3,11 @@
 namespace Database\Seeders;
 
 use App\Models\Budget;
-use App\Models\Categoria;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class CategoriaSeeder extends Seeder
+class CategorySeeder extends Seeder
 {
     /**
      * Seed the application's database.
@@ -16,7 +16,7 @@ class CategoriaSeeder extends Seeder
      */
     public function run()
     {
-        $categorias = [
+        $categories = [
             'se pagar',
             'doar',
             'poupar para os sonhos',
@@ -28,12 +28,12 @@ class CategoriaSeeder extends Seeder
 
         $user = User::where('email', User::EMAIL_PADRAO)->first();
 
-        foreach(Budget::all() as $orcamento){
-            foreach ($categorias as $categoria) {
-                Categoria::updateOrCreate([
+        foreach(Budget::all() as $budgets){
+            foreach ($categories as $category) {
+                Category::updateOrCreate([
                     'account_id' => $user->account->id,
-                    'budget_id' => $orcamento->id,
-                    'descricao' => $categoria,
+                    'budget_id' => $budgets->id,
+                    'description' => $category,
                 ]);
             }
         };

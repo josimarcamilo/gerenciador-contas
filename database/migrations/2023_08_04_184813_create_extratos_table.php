@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('descricao');
             $table->unsignedInteger('valor');
             $table->smallInteger('status')->nullable();
-            $table->foreignId('categoria_id')->nullable()->constrained();
+            $table->foreignId('category_id')->nullable()->constrained();
 
             $table->index(['account_id', 'budget_id']);
         });

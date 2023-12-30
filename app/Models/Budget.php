@@ -13,8 +13,8 @@ class Budget extends Model
         'month'
     ];
 
-    public function categorias()
+    public function categories()
     {
-        return $this->hasMany(Categoria::class);
+        return $this->hasMany(Category::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Cache;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,8 +16,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            OrcamentoSeeder::class,
-            CategoriaSeeder::class,
+            BudgetSeeder::class,
+            CategorySeeder::class,
             ExtratoSeeder::class
         ]);
     }

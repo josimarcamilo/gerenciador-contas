@@ -6,7 +6,7 @@ use App\Models\Budget;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
-class OrcamentoSeeder extends Seeder
+class BudgetSeeder extends Seeder
 {
     /**
      * Seed the application's database.

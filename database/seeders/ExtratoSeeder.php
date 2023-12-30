@@ -18,47 +18,46 @@ class ExtratoSeeder extends Seeder
     {
         $user = User::where('email', User::EMAIL_PADRAO)->first();
 
-        foreach(Budget::all() as $orcamento) {
+        foreach(Budget::all() as $budget) {
             //receita
             for($i = 0; $i<5; $i++){
                 $descricao = fake()->name();
                 $valor = fake()->numberBetween(1000, 100000);
                 Extrato::updateOrCreate([
                     'account_id' => $user->account->id,
-                    'budget_id' => $orcamento->id,
+                    'budget_id' => $budget->id,
                     'tipo' => Extrato::RECEITA,
                     'descricao' => $descricao,
                     'valor' => $valor
                 ]);
             }
             //despesa
-            $categorias =  $orcamento->categorias;
+            $categories =  $budget->categories;
             for($i = 0; $i<20; $i++){
                 $descricao = fake()->name();
                 $valor = fake()->numberBetween(1000, 100000);
                 Extrato::updateOrCreate([
                     'account_id' => $user->account->id,
-                    'budget_id' => $orcamento->id,
+                    'budget_id' => $budget->id,
                     'tipo' => Extrato::DESPESA,
                     'descricao' => $descricao,
                     'valor' => $valor,
-                    'categoria_id' => $categorias->random()->id,
+                    'category_id' => $categories->random()->id,
                     'status' => fake()->randomElements([Extrato::PENDENTE, Extrato::PAGO])[0]
                 ]);
             }
 
             //cartao
-            $categorias =  $orcamento->categorias;
             for($i = 0; $i<20; $i++){
                 $descricao = fake()->name();
                 $valor = fake()->numberBetween(1000, 100000);
                 Extrato::updateOrCreate([
                     'account_id' => $user->account->id,
-                    'budget_id' => $orcamento->id,
+                    'budget_id' => $budget->id,
                     'tipo' => Extrato::CARTAO,
                     'descricao' => $descricao,
                     'valor' => $valor,
-                    'categoria_id' => $categorias->random()->id,
+                    'category_id' => $categories->random()->id,
                     'status' => Extrato::PENDENTE
                 ]);
             }
