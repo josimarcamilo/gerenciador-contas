@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiAuthController;
+use App\Http\Controllers\BudgetApiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +31,5 @@ Route::group([
 Route::group(['prefix' => 'users'], function () {
     Route::post('/', [UserController::class, 'store'])->name('users.create');
 });
+
+Route::apiResource('budgets', BudgetApiController::class)->middleware('auth:api');

@@ -18,6 +18,9 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('account_id')->constrained()->index();
             $table->date('month');
+
+            $table->unique(['account_id', 'month']);
+            $table->index(['account_id', 'month']);
         });
     }
 
