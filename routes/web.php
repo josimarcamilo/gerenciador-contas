@@ -11,17 +11,15 @@
 |
 */
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\OrcamentoController;
-use App\Http\Controllers\SpaController;
 use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetPassword;
+use App\Http\Controllers\SpaController;
 use App\Http\Controllers\UserProfileController;
-
+use Illuminate\Support\Facades\Route;
 
 Route::get('app', [SpaController::class, 'index'])->name('app');
 Route::get('app/{any}', [SpaController::class, 'index'])->where('any', '.*')->name('spa');
@@ -38,9 +36,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
 
-Route::get('/', function () {return redirect('/dashboard'); })->middleware('auth');
+Route::get('/', function () {
+    return redirect('/dashboard');
+})->middleware('auth');
 Route::get('/register', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest')->name('register.perform');
 Route::get('/login', [LoginController::class, 'show'])->middleware('guest')->name('login');
@@ -62,4 +62,3 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
 });
-

@@ -17,7 +17,7 @@ class BudgetSeeder extends Seeder
     {
         $user = User::where('email', User::EMAIL_PADRAO)->first();
 
-        for($count = 0; $count < 3; $count++){
+        for ($count = 0; $count < 3; $count++) {
             Budget::updateOrCreate([
                 'account_id' => $user->account->id,
                 'month' => now()->addMonth($count)->format('Y-m-d'),

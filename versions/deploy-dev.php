@@ -6,8 +6,8 @@ $file_currete_version = 'version.txt';
 
 $content = scandir($directory_versions);
 
-if (!$content) {
-    echo 'directory empty' . PHP_EOL;
+if (! $content) {
+    echo 'directory empty'.PHP_EOL;
 
     return;
 }
@@ -17,38 +17,38 @@ $versions = array_filter($content, function ($value) {
 });
 
 if (count($versions) == 0) {
-    echo 'never version ' . PHP_EOL;
+    echo 'never version '.PHP_EOL;
 
     return;
 }
 
 foreach ($versions as $version) {
-    echo $version . PHP_EOL;
+    echo $version.PHP_EOL;
 }
 
 sort($versions);
 
 foreach ($versions as $version) {
-    echo $version . PHP_EOL;
+    echo $version.PHP_EOL;
 }
 
 $last_version = str_replace('.zip', '', end($versions));
-echo PHP_EOL . $last_version . PHP_EOL;
+echo PHP_EOL.$last_version.PHP_EOL;
 
 $current_version = file_get_contents($file_currete_version);
 
-echo PHP_EOL . 'current version ' . $current_version . PHP_EOL;
+echo PHP_EOL.'current version '.$current_version.PHP_EOL;
 
-echo PHP_EOL . 'last version ' . $last_version . PHP_EOL;
+echo PHP_EOL.'last version '.$last_version.PHP_EOL;
 
 if ($current_version >= $last_version) {
-    echo 'not implant ' . PHP_EOL;
+    echo 'not implant '.PHP_EOL;
 
     return;
 }
 
-$from = $directory_versions . '/' . $last_version . '.zip';
-$to = 'releases' . '/' . $last_version . '.zip';
+$from = $directory_versions.'/'.$last_version.'.zip';
+$to = 'releases'.'/'.$last_version.'.zip';
 
 copy($from, $to);
 
@@ -60,7 +60,7 @@ $ok = $zip->extractTo('./releases');
 
 $zip->close();
 
-echo PHP_EOL . 'ok ' . $ok . PHP_EOL;
+echo PHP_EOL.'ok '.$ok.PHP_EOL;
 unlink($to);
 
 //symbolic
@@ -98,4 +98,4 @@ print_r($result);
 // }
 // echo(PHP_EOL. 'E link '. PHP_EOL);
 
-echo PHP_EOL . "version $last_version in production" . PHP_EOL;
+echo PHP_EOL."version $last_version in production".PHP_EOL;

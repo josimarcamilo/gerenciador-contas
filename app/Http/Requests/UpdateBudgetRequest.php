@@ -25,7 +25,7 @@ class UpdateBudgetRequest extends FormRequest
     public function rules()
     {
         return [
-            'month' => 'date|required'
+            'month' => 'date|required',
         ];
     }
 }

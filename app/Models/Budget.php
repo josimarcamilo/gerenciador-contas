@@ -10,7 +10,7 @@ class Budget extends Model
     use HasFactory;
 
     protected $dates = [
-        'month'
+        'month',
     ];
 
     public function categories()

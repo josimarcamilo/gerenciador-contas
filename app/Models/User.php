@@ -73,14 +73,13 @@ class User extends Authenticatable implements JWTSubject
     {
         return [
             'email' => $this->email,
-            'account' => $this->account->id
+            'account' => $this->account->id,
         ];
     }
 
     /**
      * Always encrypt the password when it is updated.
      *
-     * @param $value
      * @return string
      */
     public function setPasswordAttribute($value)
@@ -96,7 +95,7 @@ class User extends Authenticatable implements JWTSubject
     protected function password(): Attribute
     {
         return Attribute::make(
-            set: fn($value) => bcrypt($value)
+            set: fn ($value) => bcrypt($value)
         );
     }
 }

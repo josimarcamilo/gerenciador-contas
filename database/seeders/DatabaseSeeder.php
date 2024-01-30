@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             BudgetSeeder::class,
             CategorySeeder::class,
-            ExtractSeeder::class
+            ExtractSeeder::class,
         ]);
     }
 }

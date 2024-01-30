@@ -15,7 +15,7 @@ class CreateUserTest extends TestCase
     {
         $response = $this->post('/api/users', [
             'name' => uniqid('user_'),
-            'email' => uniqid('email_') . '@test.com',
+            'email' => uniqid('email_').'@test.com',
             'password' => uniqid(),
         ]);
 

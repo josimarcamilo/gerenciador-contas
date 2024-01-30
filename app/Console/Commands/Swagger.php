@@ -28,8 +28,9 @@ class Swagger extends Command
     public function handle()
     {
         $openapi = \OpenApi\Generator::scan(['app/Http/Controllers/']);
-        file_put_contents("public/docs/api/swagger.json", $openapi->toJson()) ;
+        file_put_contents('public/docs/api/swagger.json', $openapi->toJson());
         $this->info('Api documentation generated successfully!');
+
         return Command::SUCCESS;
     }
 }

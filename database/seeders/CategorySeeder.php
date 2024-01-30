@@ -28,7 +28,7 @@ class CategorySeeder extends Seeder
 
         $user = User::where('email', User::EMAIL_PADRAO)->first();
 
-        foreach(Budget::all() as $budgets){
+        foreach (Budget::all() as $budgets) {
             foreach ($categories as $category) {
                 Category::updateOrCreate([
                     'account_id' => $user->account->id,
@@ -36,6 +36,6 @@ class CategorySeeder extends Seeder
                     'description' => $category,
                 ]);
             }
-        };
+        }
     }
 }

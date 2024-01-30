@@ -32,10 +32,12 @@ class ApiAuthController extends Controller
      *
      * @OA\Post(
      *     path="/api/login",
+     *
      *     @OA\RequestBody(
      *         response="200",
      *         description="The data"
      *     )
+     *
      *     @OA\Response(
      *         response="200",
      *         description="The data"
@@ -48,7 +50,7 @@ class ApiAuthController extends Controller
     {
         $credentials = request(['email', 'password']);
         // Generate a token for the user if the credentials are valid
-        if (!$token = $this->auth->attempt($credentials)) {
+        if (! $token = $this->auth->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -95,8 +97,7 @@ class ApiAuthController extends Controller
     /**
      * Get the token array structure.
      *
-     * @param  string $token
-     *
+     * @param  string  $token
      * @return \Illuminate\Http\JsonResponse
      */
     protected function respondWithToken($token)

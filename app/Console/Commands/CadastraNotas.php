@@ -40,11 +40,13 @@ class CadastraNotas extends Command
         /**
          * @var DOMElement
          */
-        $tabelaItens = $teste->item($teste->count() -2);
+        $tabelaItens = $teste->item($teste->count() - 2);
         $trs = $tabelaItens->getElementsByTagName('tr');
         $itensComprados = [];
-        foreach($trs as $key => $tr){
-            if($key == 0){continue;}
+        foreach ($trs as $key => $tr) {
+            if ($key == 0) {
+                continue;
+            }
             $item = $tr->getElementsByTagName('td')->item(1)->textContent;
             $this->info("$key - $item");
             $itensComprados[] = $item;

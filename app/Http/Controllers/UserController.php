@@ -35,6 +35,7 @@ class UserController extends Controller
             return response()->json(['data' => $user], 201);
         } catch (Throwable $th) {
             DB::rollBack();
+
             return response()->json([
                 'message' => $th->getMessage(),
             ], 422);

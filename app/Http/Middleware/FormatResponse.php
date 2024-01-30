@@ -10,7 +10,6 @@ class FormatResponse
     /**
      * Handle an incoming request.
      *
-     * @param  Request  $request
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
@@ -20,13 +19,14 @@ class FormatResponse
 
         $existGetData = method_exists($response, 'getData');
 
-        if($response->isSuccessful() && $existGetData){
-            if(! isset($response->getData()->current_page)){
+        if ($response->isSuccessful() && $existGetData) {
+            if (! isset($response->getData()->current_page)) {
                 return response()->json([
                     'error' => false,
-                    'data' => $response->getData()
+                    'data' => $response->getData(),
                 ]);
             }
+
             return response()->json(array_merge(
                 ['error' => false, 'paginate' => true],
                 (array) $response->getData()
