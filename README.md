@@ -51,3 +51,6 @@ $payload->toArray(); // = ['sub' => 123, 'exp' => 123456, 'jti' => 'asfe4fq434as
 ```
 # Ferramentas
 - [Para testes de webhooks: pipedream](https://pipedream.com/)
+
+# Pontos importantes no sistema
+- Existe o middleware FormatResponse que formata as responstas da API

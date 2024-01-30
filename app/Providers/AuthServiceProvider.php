@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\Budget;
+use App\Policies\BudgetPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -12,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Budget::class => BudgetPolicy::class,
     ];
 
     /**
