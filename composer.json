@@ -63,7 +63,8 @@
         "style-5": "./vendor/bin/php-cs-fixer fix --diff --verbose --dry-run routes",
         "style-6": "./vendor/bin/php-cs-fixer fix --diff --verbose --dry-run scripts",
         "style-7": "./vendor/bin/php-cs-fixer fix --diff --verbose --dry-run tests",
-        "fix-style": "./vendor/bin/php-cs-fixer fix"
+        "fix-style": "./vendor/bin/php-cs-fixer fix",
+        "format-code": "./vendor/bin/pint"
     },
     "extra": {
         "laravel": {
