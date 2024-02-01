@@ -2,7 +2,10 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -34,13 +37,52 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
+    }
 
-        $this->renderable(function (Throwable $e, $request) {
+    public function render($request, Throwable $e)
+    {
+        if ($e instanceof ValidationException) {
+            $errors = [];
+            foreach ($e->errors() as $err) {
+                $errors[] = $err[0];
+            }
+
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage(),
+                'errors' => $errors,
+                'data' => [],
+            ], $e->status);
+        }
+
+        if ($e instanceof ModelNotFoundException) {
             return response()->json([
                 'error' => true,
                 'message' => $e->getMessage(),
                 'data' => [],
-            ], $e->getStatusCode());
-        });
+            ], 404);
+        }
+
+        if ($e instanceof QueryException) {
+            return response()->json([
+                'error' => true,
+                'message' => $e->getMessage(),
+                'data' => [],
+            ], 500);
+        }
+
+        $code = $e->getCode();
+
+        if (method_exists($e, 'getStatusCode')) {
+            $code = $e->getStatusCode();
+        }
+
+        return response()->json([
+            'error' => true,
+            'message' => $e->getMessage(),
+            'data' => [],
+        ], $code);
+
+        return parent::render($request, $e);
     }
 }
