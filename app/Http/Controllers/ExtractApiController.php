@@ -48,7 +48,7 @@ class ExtractApiController extends Controller
         $extract->description = $request->description;
         $extract->value = $request->value;
         $extract->type = TypeExtract::toInteger($request->type);
-        
+
         if ($request->status) {
             $extract->status = StatusExtract::toInteger($request->status);
         }

@@ -2,10 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Util\StatusExtract;
-use App\Util\TypeExtract;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class UpdateCategoryRequest extends FormRequest
 {

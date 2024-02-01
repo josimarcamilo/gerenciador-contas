@@ -3,16 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\StoreExtractRequest;
-use App\Http\Requests\UpdateBudgetRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Budget;
 use App\Models\Category;
 use App\Models\Extract;
-use App\Util\StatusExtract;
-use App\Util\TypeExtract;
-use Carbon\Carbon;
-use Exception;
 use Illuminate\Http\Request;
 
 class CategoryApiController extends Controller
@@ -83,6 +77,7 @@ class CategoryApiController extends Controller
     {
         // add gate
         $category->delete();
+
         return [];
     }
 }
