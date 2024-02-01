@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\BudgetApiController;
+use App\Http\Controllers\CategoryApiController;
+use App\Http\Controllers\ExtractApiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,3 +35,15 @@ Route::group(['prefix' => 'users'], function () {
 });
 
 Route::apiResource('budgets', BudgetApiController::class)->middleware('auth:api');
+
+//colocar para receber o budget no parametro igual na de categoria
+Route::apiResource('extracts', ExtractApiController::class)->middleware('auth:api');
+
+Route::group([
+    'prefix' => 'categories',
+], function () {
+    Route::get('/{budget}', [CategoryApiController::class, 'index']);
+    Route::post('/{budget}', [CategoryApiController::class, 'store']);
+    Route::put('/{category}', [CategoryApiController::class, 'update']);
+    Route::delete('/{category}', [CategoryApiController::class, 'destroy']);
+});
