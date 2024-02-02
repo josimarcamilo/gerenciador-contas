@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreExtractRequest;
+use App\Http\Requests\UpdateExtractRequest;
+use App\Models\Budget;
 use App\Models\Extract;
 use App\Util\StatusExtract;
 use App\Util\TypeExtract;
-use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -17,31 +18,20 @@ class ExtractApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Budget $budget)
     {
-        $payload = auth()->payload();
-
-        return Extract::where('account_id', $payload['account'])
-            ->orderBy('type')
-            ->simplePaginate();
+        return $budget->extracts()
+            ->orderBy('type')->get();
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreExtractRequest $request)
+    public function store(StoreExtractRequest $request, Budget $budget)
     {
-        $budgetDate = new Carbon($request->budget);
-        $user = $request->user();
-
-        $budget = $user->account->budgets()
-            ->whereDate('month', $budgetDate->format('Y-m-d'))
-            ->first();
-        throw_if(! $budget, new Exception('Budget not found.', 404));
-
         $extract = new Extract();
         $extract->account_id = $budget->account_id;
         $extract->budget_id = $budget->id;
@@ -70,7 +60,7 @@ class ExtractApiController extends Controller
      */
     public function show(Extract $extract)
     {
-        //
+        return $extract;
     }
 
     /**
@@ -78,9 +68,22 @@ class ExtractApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Extract $extract)
+    public function update(UpdateExtractRequest $request, Extract $extract)
     {
-        //
+        $extract->description = $request->description;
+        $extract->value = $request->value;
+
+        if ($request->status) {
+            $extract->status = StatusExtract::toInteger($request->status);
+        }
+
+        if ($request->category) {
+            $category = $extract->budget->categories()->where('id', $request->category)
+                ->first();
+            throw_if(! $category, new Exception('Category not found.', 404));
+            $extract->category_id = $category->id;
+        }
+        $extract->save();
     }
 
     /**
@@ -90,6 +93,7 @@ class ExtractApiController extends Controller
      */
     public function destroy(Extract $extract)
     {
-        //
+        // add gate
+        $extract->delete();
     }
 }

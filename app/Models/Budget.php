@@ -17,4 +17,9 @@ class Budget extends Model
     {
         return $this->hasMany(Category::class);
     }
+
+    public function extracts()
+    {
+        return $this->hasMany(Extract::class);
+    }
 }

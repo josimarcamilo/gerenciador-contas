@@ -18,4 +18,9 @@ class Extract extends Model
     const PENDENTE = 1;
 
     const PAGO = 2;
+
+    public function budget()
+    {
+        return $this->belongsTo(Budget::class);
+    }
 }

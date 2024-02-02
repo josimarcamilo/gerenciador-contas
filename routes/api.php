@@ -34,13 +34,23 @@ Route::group(['prefix' => 'users'], function () {
     Route::post('/', [UserController::class, 'store'])->name('users.create');
 });
 
-Route::apiResource('budgets', BudgetApiController::class)->middleware('auth:api');
+Route::apiResource('budgets', BudgetApiController::class)
+    ->middleware('auth:api');
 
-//colocar para receber o budget no parametro igual na de categoria
-Route::apiResource('extracts', ExtractApiController::class)->middleware('auth:api');
+Route::group([
+    'prefix' => 'extracts',
+    'middleware' => 'auth:api',
+], function () {
+    Route::get('/{budget}', [ExtractApiController::class, 'index']);
+    Route::get('/show/{extract}', [ExtractApiController::class, 'show']);
+    Route::post('/{budget}', [ExtractApiController::class, 'store']);
+    Route::put('/{extract}', [ExtractApiController::class, 'update']);
+    Route::delete('/{extract}', [ExtractApiController::class, 'destroy']);
+});
 
 Route::group([
     'prefix' => 'categories',
+    'middleware' => 'auth:api',
 ], function () {
     Route::get('/{budget}', [CategoryApiController::class, 'index']);
     Route::post('/{budget}', [CategoryApiController::class, 'store']);

@@ -3,11 +3,10 @@
 namespace App\Http\Requests;
 
 use App\Util\StatusExtract;
-use App\Util\TypeExtract;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreExtractRequest extends FormRequest
+class UpdateExtractRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -17,7 +16,6 @@ class StoreExtractRequest extends FormRequest
     public function rules()
     {
         return [
-            'type' => ['required', 'string', Rule::in(TypeExtract::casesString())],
             'description' => 'required|string',
             'value' => 'required|integer',
             'status' => ['nullable', 'string', Rule::in(StatusExtract::casesString())],
