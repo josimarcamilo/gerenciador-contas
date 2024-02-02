@@ -20,7 +20,7 @@ class BudgetApiController extends Controller
 
         return Budget::where('account_id', $payload['account'])
             ->orderBy('month')
-            ->paginate();
+            ->simplePaginate();
     }
 
     /**
