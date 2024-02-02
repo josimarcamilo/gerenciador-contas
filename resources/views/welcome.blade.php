@@ -8,6 +8,6 @@
     </head>
     <body class="">
         <h1>Bem vindo Josimar</h1>
-        <h1>versao 2023.9</h1>
+        <h1>versao 2024.2</h1>
     </body>
 </html>
