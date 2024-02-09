@@ -10,6 +10,7 @@ use App\Util\StatusExtract;
 use App\Util\TypeExtract;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ExtractApiController extends Controller
 {
@@ -20,6 +21,8 @@ class ExtractApiController extends Controller
      */
     public function index(Budget $budget)
     {
+        Gate::authorize('view', $budget);
+
         return $budget->extracts()
             ->orderBy('type')->get();
     }
@@ -32,6 +35,8 @@ class ExtractApiController extends Controller
      */
     public function store(StoreExtractRequest $request, Budget $budget)
     {
+        Gate::authorize('view', $budget);
+
         $extract = new Extract();
         $extract->account_id = $budget->account_id;
         $extract->budget_id = $budget->id;
@@ -60,6 +65,8 @@ class ExtractApiController extends Controller
      */
     public function show(Extract $extract)
     {
+        Gate::authorize('view', $extract);
+
         return $extract;
     }
 
@@ -70,6 +77,8 @@ class ExtractApiController extends Controller
      */
     public function update(UpdateExtractRequest $request, Extract $extract)
     {
+        Gate::authorize('update', $extract);
+
         $extract->description = $request->description;
         $extract->value = $request->value;
 
@@ -93,7 +102,8 @@ class ExtractApiController extends Controller
      */
     public function destroy(Extract $extract)
     {
-        // add gate
+        Gate::authorize('delete', $extract);
+
         $extract->delete();
     }
 }

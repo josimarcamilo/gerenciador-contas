@@ -8,6 +8,7 @@ use App\Models\Budget;
 use App\Models\Category;
 use App\Models\Extract;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CategoryApiController extends Controller
 {
@@ -18,7 +19,8 @@ class CategoryApiController extends Controller
      */
     public function index(Budget $budget)
     {
-        //add gate
+        Gate::authorize('view', $budget);
+
         return $budget->categories;
     }
 
@@ -30,7 +32,7 @@ class CategoryApiController extends Controller
      */
     public function store(StoreCategoryRequest $request, Budget $budget)
     {
-        // add gate
+        Gate::authorize('view', $budget);
 
         $model = new Category();
         $model->account_id = $budget->account_id;
@@ -59,7 +61,7 @@ class CategoryApiController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        // add gate - a categoria tem que ser da conta do usuário
+        Gate::authorize('update', $category);
 
         $category->description = $request->description;
         $category->planned = $request->planned;
@@ -75,7 +77,7 @@ class CategoryApiController extends Controller
      */
     public function destroy(Category $category)
     {
-        // add gate
+        Gate::authorize('delete', $category);
         $category->delete();
 
         return [];
