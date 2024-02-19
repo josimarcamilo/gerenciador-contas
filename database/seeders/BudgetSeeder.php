@@ -21,6 +21,7 @@ class BudgetSeeder extends Seeder
             Budget::updateOrCreate([
                 'account_id' => $user->account->id,
                 'month' => now()->addMonth($count)->format('Y-m-d'),
+                'goal' => mb_substr(fake()->paragraph(), 0, 100),
             ]);
         }
     }

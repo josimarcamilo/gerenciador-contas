@@ -34,6 +34,7 @@ class CategorySeeder extends Seeder
                     'account_id' => $user->account->id,
                     'budget_id' => $budgets->id,
                     'description' => $category,
+                    'planned' => fake()->numberBetween(1, 100)
                 ]);
             }
         }
