@@ -54,3 +54,27 @@ $payload->toArray(); // = ['sub' => 123, 'exp' => 123456, 'jti' => 'asfe4fq434as
 
 # Pontos importantes no sistema
 - Existe o middleware FormatResponse que formata as responstas da API
+
+# Deploy Hostgator
+1. Criar um link simbólico apontando para a pasta do projeto (repo-app)
+```bash
+ln -nfs repo-app/public public_html
+```
+2. Ajustar as permissões das pastas e arquivos
+```bash
+cd repo-app
+```
+```bash
+find * -type d -exec chmod 755 {} \;
+```
+```bash
+find * -type f -exec chmod 644 {} \;
+```
+
+3. Ajustar a permissão da pasta do projeto (repo-app)
+```bash
+cd
+```
+```bash
+chmod 755 repo-app
+```
