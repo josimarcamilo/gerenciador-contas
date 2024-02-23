@@ -19,7 +19,7 @@ class BudgetApiController extends Controller
         $payload = auth()->payload();
 
         return Budget::where('account_id', $payload['account'])
-            ->orderBy('month')
+            ->orderBy('month', 'desc')
             ->simplePaginate();
     }
 
