@@ -15,12 +15,11 @@ return new class extends Migration {
         Schema::create('budgets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->foreignId('account_id')->constrained()->index();
+            $table->foreignId('account_id')->constrained()->cascadeOnDelete();
             $table->date('month');
             $table->string('goal')->nullable();
 
             $table->unique(['account_id', 'month']);
-            $table->index(['account_id', 'month']);
         });
     }
 

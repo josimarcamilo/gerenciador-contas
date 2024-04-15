@@ -16,8 +16,9 @@ return new class extends Migration
         Schema::create('extracts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
-            $table->foreignId('account_id')->constrained();
-            $table->foreignId('budget_id')->constrained();
+            $table->foreignId('account_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('budget_id')->constrained()->cascadeOnDelete();
+            $table->string('external_id')->nullable()->index();
             $table->smallInteger('type');
             $table->string('description');
             $table->unsignedInteger('value');
