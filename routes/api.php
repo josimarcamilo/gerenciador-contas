@@ -3,6 +3,7 @@
 use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\BudgetApiController;
 use App\Http\Controllers\CategoryApiController;
+use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ExtractApiController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::resource('compras', CompraController::class);
 
 /* AUTH */
 
